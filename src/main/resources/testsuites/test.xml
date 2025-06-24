@@ -1,0 +1,20 @@
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite name="Test-Suite">
+    <test name="ToolsQA">
+        <classes>
+            <class name="login.TC01" />
+            <class name="login.TC02" />
+            <class name="login.TC03" />
+            <class name="book_ticket.TC04" />
+            <class name="login.TC05" />
+            <class name="login.TC06" />
+            <class name="register.TC07" />
+            <class name="login.TC08" />
+            <class name="change_password.TC09" />
+            <class name="register.TC10" />
+            <class name="register.TC11" />
+
+
+        </classes>
+    </test>
+</suite>
