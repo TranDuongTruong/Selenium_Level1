@@ -1,27 +1,30 @@
 package change_password;
 
 import base.TestBase;
-import constant.Constants;
+import com.Railway.constant.Constants;
+import org.testng.Assert;
 import org.testng.annotations.Test;
-import org.testng.asserts.SoftAssert;
-import pages.BasePage;
-import pages.ChangePasswordPage;
-import pages.LoginPage;
+import com.Railway.pages.BasePage;
+import com.Railway.pages.ChangePasswordPage;
+import com.Railway.pages.LoginPage;
 
 public class TC09 extends TestBase {
 
     @Test
-    public void testCaseTC01(){
-        SoftAssert softAssert = new SoftAssert();
+    public void userCanChangePassword(){
 
-        BasePage.goToSpecificPage("Login");
+//        1. Navigate to QA Railway Website
+//        2. Login with valid account
+        BasePage.goToSpecificPage(Constants.TabName.LOGIN);
         LoginPage loginPage=new LoginPage();
-        loginPage.login(Constants.USERNAME,Constants.PASSWORD);
-        BasePage.goToSpecificPage("Change password");
+        loginPage.loginWithValidAccount(Constants.AccountInfo.USERNAME,Constants.AccountInfo.PASSWORD);
+//        3. Click on "Change Password" tab
+        BasePage.goToSpecificPage(Constants.TabName.CHANGE_PASSWORD);
         ChangePasswordPage changePasswordPage=new ChangePasswordPage();
-        changePasswordPage.changePassword(Constants.PASSWORD,Constants.PASSWORD,Constants.PASSWORD);
-        softAssert.assertTrue(changePasswordPage.checkSuccessMessage("Your password has been updated"),"Check success message");
-        softAssert.assertAll();
+//        4. Enter valid value into all fields.
+//        5. Click on "Change Password" button
+        changePasswordPage.changePassword(Constants.AccountInfo.PASSWORD,Constants.AccountInfo.PASSWORD,Constants.AccountInfo.PASSWORD);
+        Assert.assertEquals(changePasswordPage.getChangePasswordSuccessMessage(),Constants.Message.CHANGE_PASSWORD_SUCCESS_MESSAGE,"Check change password success message");
 
     }
 }

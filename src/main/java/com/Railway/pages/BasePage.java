@@ -1,0 +1,45 @@
+package com.Railway.pages;
+
+import com.Railway.driver.DriverManager;
+import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
+import org.openqa.selenium.WebElement;
+
+import java.util.List;
+
+public class BasePage {
+
+
+    public  static  void goToSpecificPage(String pageName){
+        DriverManager.get_driver().findElement(By.linkText(pageName)).click();
+
+    }
+    public  static Boolean isMenuItemIsExist(String itemName){
+        return !DriverManager.get_driver().findElements(By.linkText(itemName)).isEmpty();
+    }
+
+
+    private final By headingTextBy =By.xpath("//h1[@align='center']");
+    protected String expectedTitletxt;
+
+    private WebElement getHeadingTextBy(){
+        return DriverManager.get_driver().findElement(this.headingTextBy);
+    }
+
+    public Boolean isPageDisplayed(String headingText){
+        return getHeadingTextBy().getText().equals(headingText);
+    }
+
+
+
+    protected WebElement getElement(By by){
+        return DriverManager.get_driver().findElement(by);
+    }
+    protected List<WebElement> getElements(By by){
+        return DriverManager.get_driver().findElements(by);
+    }
+
+
+
+
+}

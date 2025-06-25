@@ -1,25 +1,27 @@
 package login;
 
 import base.TestBase;
-import constant.Constants;
+import com.Railway.constant.Constants;
 import org.testng.Assert;
 import org.testng.annotations.Test;
-import org.testng.asserts.SoftAssert;
-import pages.BasePage;
-import pages.HomePage;
-import pages.LoginPage;
+import com.Railway.pages.BasePage;
+import com.Railway.pages.HomePage;
+import com.Railway.pages.LoginPage;
 
 public class TC01 extends TestBase {
 
     @Test
-    public void testCaseTC01(){
-        SoftAssert softAssert = new SoftAssert();
+    public void userCanLogIntoRailwayWithValidUsernameAndPassword(){
 
-        BasePage.goToSpecificPage("Login");
+//        1. Navigate to QA Railway Website
+//        2. Click on "Login" tab
+        BasePage.goToSpecificPage(Constants.TabName.LOGIN);
         LoginPage loginPage=new LoginPage();
-        loginPage.login(Constants.USERNAME,Constants.PASSWORD);
-        Assert.assertTrue(HomePage.checkWelcomeText(Constants.USERNAME),"Check welcome text in home page");
-        softAssert.assertAll();
+        HomePage homePage=new HomePage();
+//        3. Enter valid Email and Password
+//        4. Click on "Login" button
+        loginPage.loginWithValidAccount(Constants.AccountInfo.USERNAME,Constants.AccountInfo.PASSWORD);
+        Assert.assertEquals(homePage.getWelcomeText(),Constants.Message.HOME_WELCOME_MESSAGE,"Check welcome text in home page");
 
     }
 }
