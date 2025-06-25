@@ -1,6 +1,7 @@
 package com.Railway.pages;
 
 import com.Railway.driver.DriverManager;
+import org.openqa.selenium.Alert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebElement;
@@ -19,15 +20,19 @@ public class BasePage {
     }
 
 
-    private final By headingTextBy =By.xpath("//h1[@align='center']");
+    private final By headingPageTextBy =By.xpath("//h1[@align='center']");
+    private final By headingFormTextBy =By.xpath("//legend");
     protected String expectedTitletxt;
 
     private WebElement getHeadingTextBy(){
-        return DriverManager.get_driver().findElement(this.headingTextBy);
+        return DriverManager.get_driver().findElement(this.headingPageTextBy);
     }
 
     public Boolean isPageDisplayed(String headingText){
         return getHeadingTextBy().getText().equals(headingText);
+    }
+    public String getHeadingForm(){
+        return getElement(headingFormTextBy).getText();
     }
 
 
@@ -38,7 +43,10 @@ public class BasePage {
     protected List<WebElement> getElements(By by){
         return DriverManager.get_driver().findElements(by);
     }
-
+    public void clickPopup() {
+        Alert alert = DriverManager.get_driver().switchTo().alert();
+        alert.accept();
+    }
 
 
 
