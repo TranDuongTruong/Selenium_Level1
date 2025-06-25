@@ -1,27 +1,28 @@
 package login;
 
 import base.TestBase;
-import constant.Constants;
+import com.Railway.constant.Constants;
 import org.testng.Assert;
 import org.testng.annotations.Test;
-import org.testng.asserts.SoftAssert;
-import pages.BasePage;
-import pages.HomePage;
-import pages.LoginPage;
+import com.Railway.pages.BasePage;
+import com.Railway.pages.LoginPage;
 
 public class TC08 extends TestBase {
 
     @Test
-    public void testCaseTC01(){
-        SoftAssert softAssert = new SoftAssert();
+    public void userCanNotLoginWithAccountHasNotBeenActivated(){
 
-        BasePage.goToSpecificPage("Login");
+
+//        1. Navigate to QA Railway Website
+//        2. Click on "Login" tab
+        BasePage.goToSpecificPage(Constants.TabName.LOGIN);
         LoginPage loginPage=new LoginPage();
-        loginPage.login(Constants.EMAIL_INACTIVE,Constants.PASSWORD);
-        softAssert.assertTrue(loginPage.checkErrorMessage("Invalid username or password. Please try again."),"Check error message");
-        softAssert.assertTrue(!BasePage.itemIsExist("Log out"),"Check User can't login ");
+//        3. Enter username and password of account hasn't been activated.
+//        4. Click on "Login" button
+        loginPage.loginWithValidAccount(Constants.AccountInfo.EMAIL_INACTIVE,Constants.AccountInfo.PASSWORD);
+        Assert.assertEquals(loginPage.getLoginErrorMessage(),Constants.Message.LOGIN_INVALID_USERNAME_PASSWORD_ERROR_MESSAGE,"Check error message");
+        softAssert.assertTrue(!BasePage.isMenuItemIsExist(Constants.TabName.LOGOUT),"Check User can't login ");
 
-        softAssert.assertAll();
 
     }
 }

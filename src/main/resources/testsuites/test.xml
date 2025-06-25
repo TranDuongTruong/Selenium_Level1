@@ -13,6 +13,7 @@
             <class name="change_password.TC09" />
             <class name="register.TC10" />
             <class name="register.TC11" />
+            <class name="login.TC12" />
 
 
         </classes>

@@ -1,23 +1,25 @@
 package login;
 
 import base.TestBase;
-import constant.Constants;
+import com.Railway.constant.Constants;
 import org.testng.Assert;
 import org.testng.annotations.Test;
-import org.testng.asserts.SoftAssert;
-import pages.BasePage;
-import pages.LoginPage;
+import com.Railway.pages.BasePage;
+import com.Railway.pages.LoginPage;
 
 public class TC03 extends TestBase {
 
     @Test
-    public void testCaseTC01(){
-        SoftAssert softAssert = new SoftAssert();
-        BasePage.goToSpecificPage("Login");
+    public void userCanNotLogIntoRailwayWithInvalidPassword(){
+
+//        1. Navigate to QA Railway Website
+//        2. Click on "Login" tab
+        BasePage.goToSpecificPage(Constants.TabName.LOGIN);
         LoginPage loginPage=new LoginPage();
-        loginPage.login(Constants.USERNAME, "111");
-        softAssert.assertTrue(loginPage.checkErrorMessage("There was a problem with your login and/or errors exist in your form."),"Check error message");
-        softAssert.assertAll();
+//        3. Enter valid Email and invalid Password
+//        4. Click on "Login" button
+        loginPage.loginWithValidAccount(Constants.AccountInfo.USERNAME, "111");
+        Assert.assertEquals(loginPage.getLoginErrorMessage(),Constants.Message.LOGIN_ERROR_MESSAGE,"Check error message");
 
     }
 

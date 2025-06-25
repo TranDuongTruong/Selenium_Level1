@@ -1,4 +1,4 @@
-package pages;
+package com.Railway.pages;
 
 public class BookTicketPage {
 }

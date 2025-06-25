@@ -1,25 +1,30 @@
 package register;
 
 import base.TestBase;
-import constant.Constants;
+import com.Railway.constant.Constants;
+import com.Railway.model.RegisterInfo;
+import org.testng.Assert;
 import org.testng.annotations.Test;
-import org.testng.asserts.SoftAssert;
-import pages.BasePage;
-import pages.RegisterPage;
+import com.Railway.pages.BasePage;
+import com.Railway.pages.RegisterPage;
 
 public class TC10 extends TestBase {
 
     @Test
-    public void testCaseTC01(){
-        SoftAssert softAssert = new SoftAssert();
+    public void userCanNotCreateAccountWhenConfirmPasswordIsNotTheSameAsPassword(){
 
-        BasePage.goToSpecificPage("Register");
+
+//        1. Navigate to QA Railway Website
+//        2. Click on "Register" tab
+        BasePage.goToSpecificPage(Constants.TabName.REGISTER);
 
         RegisterPage registerPage=new RegisterPage();
-        registerPage.register("sss1623@gmail.com",Constants.PASSWORD,"",Constants.PID);
-        softAssert.assertTrue(registerPage.checkErrorMessage("There're errors in the form. Please correct the errors and try again."),"Check error message");
+        RegisterInfo registerInfo=new RegisterInfo(Constants.AccountInfo.NEW_EMAIL,Constants.AccountInfo.PASSWORD,"",Constants.AccountInfo.PID);
+//        3. Enter valid information into all fields except "Confirm password" is not the same with "Password"
+//        4. Click on "Register" button
+        registerPage.registerAccount(registerInfo);
+        Assert.assertEquals(registerPage.getErrorMessage(),Constants.Message.REGISTER_ERROR_MESSAGE,"Check error message");
 
-        softAssert.assertAll();
 
     }
 }

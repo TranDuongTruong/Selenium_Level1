@@ -1,27 +1,28 @@
 package login;
 
 import base.TestBase;
-import constant.Constants;
+import com.Railway.constant.Constants;
 import org.testng.Assert;
 import org.testng.annotations.Test;
-import org.testng.asserts.SoftAssert;
-import pages.BasePage;
-import pages.LoginPage;
+import com.Railway.pages.BasePage;
+import com.Railway.pages.LoginPage;
 
 public class TC05 extends TestBase {
 
     @Test
-    public void testCaseTC01(){
-        BasePage.goToSpecificPage("Login");
-        SoftAssert softAssert = new SoftAssert();
+    public void systemShowsMessageWhenUserEntersWrongPasswordSeveralTimes(){
+
+//        1. Navigate to QA Railway Website
+//        2. Click on "Login" tab
+        BasePage.goToSpecificPage(Constants.TabName.LOGIN);
         LoginPage loginPage=new LoginPage();
-        for(int i=0;i<4;i++){
-            loginPage.login(Constants.USERNAME,"");
-        }
-        softAssert.assertTrue(loginPage.checkErrorMessage("You have used 4 out of 5 login attempts. After all 5 have been used, you will be unable to login for 15 minutes."),
+//        3. Enter valid information into "Username" textbox except "Password" textbox.
+//        4. Click on "Login" button
+//        5. Repeat step 3 three more times.
+        loginPage.loginMutipleTime(Constants.AccountInfo.USERNAME,"",4);
+        Assert.assertEquals(loginPage.getLoginErrorMessage(),Constants.Message.LOGIN_SEVERAL_TIME_ERROR_MESSAGE,
                 "Check error message");
 
-        softAssert.assertAll();
 
 
     }
