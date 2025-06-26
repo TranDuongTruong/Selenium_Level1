@@ -2,6 +2,7 @@ package book_ticket;
 
 import base.TestBase;
 import com.Railway.constant.Constants;
+import com.Railway.data.TicketJsonReader;
 import com.Railway.model.Ticket;
 import com.Railway.pages.BasePage;
 import com.Railway.pages.BookTicketPage;
@@ -10,11 +11,15 @@ import com.Railway.pages.MyTicketPage;
 import com.beust.ah.A;
 import org.testng.Assert;
 import org.testng.annotations.Test;
+import io.qameta.allure.*;
 
+@Epic("Book Ticket Function")
+@Feature("Valid Book Ticket")
+@Severity(SeverityLevel.CRITICAL)
 public class TC14 extends TestBase {
 
 
-    @Test
+    @Test(description = "User can book 1 ticket at a time")
     public void  userCanBookOneTicketAtATime(){
 //        1. Navigate to QA Railway Website
 //        2. Login with a valid account
@@ -25,7 +30,7 @@ public class TC14 extends TestBase {
 //         get same ticket count in my ticket page
         BasePage.goToSpecificPage(Constants.TabName.MY_TICKET);
         MyTicketPage myTicketPage=new MyTicketPage();
-        Ticket ticket=new Ticket(Constants.TicketInfo.DEPART_DATE,Constants.TicketInfo.DEPART_FROM,Constants.TicketInfo.ARRIVE_AT,Constants.TicketInfo.SEAT_TYPE,Constants.TicketInfo.TICKET_AMOUNT);
+        Ticket ticket= TicketJsonReader.getRandomTicket();
 
         int sameTicketCount=myTicketPage.getSameCountTicket(ticket);
 

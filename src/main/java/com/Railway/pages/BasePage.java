@@ -1,6 +1,7 @@
 package com.Railway.pages;
 
 import com.Railway.driver.DriverManager;
+import io.qameta.allure.Step;
 import org.openqa.selenium.Alert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
@@ -10,7 +11,7 @@ import java.util.List;
 
 public class BasePage {
 
-
+    @Step("Go to specific page")
     public  static  void goToSpecificPage(String pageName){
         DriverManager.get_driver().findElement(By.linkText(pageName)).click();
 

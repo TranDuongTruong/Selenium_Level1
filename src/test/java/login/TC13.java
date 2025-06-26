@@ -12,10 +12,16 @@ import com.Railway.untilities.MailBoxManager;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
+
+import io.qameta.allure.*;
+
+@Epic("Login Function")
+@Feature("Valid Login")
+@Severity(SeverityLevel.CRITICAL)
 public class TC13 extends TestBase {
 
 
-    @Test
+    @Test(description = "Errors display if password and confirm password don't match when resetting password")
     public void errorsDisplayWhenPasswordAndConfirmDoNotMatchOnReset(){
 
 //    1. Navigate to QA Railway Login page

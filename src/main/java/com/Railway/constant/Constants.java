@@ -60,7 +60,7 @@ public class Constants {
     }
 
     public static class TicketInfo{
-        public static final String DEPART_DATE="6/28/2025";
+        public static final String DEPART_DATE="7/7/2025";
         public static final String DEPART_FROM="Huế";
         public static final String ARRIVE_AT="Quảng Ngãi";
         public static final String SEAT_TYPE="Soft bed with air conditioner";
@@ -69,6 +69,16 @@ public class Constants {
 
         public static final String DEPART_FROM_TIMETABLE="Huế";
         public static final String ARRIVE_AT_TIMETABLE="Sài Gòn";
+    }
+
+
+    public static class MaiLService{
+        public static final String SYSTEM_SENDER="thanhletraining03@gmail.com";
+        public static final String ACTIVE_ACCOUNT_TITLE_PREFIX="Please confirm your account";
+        public static final String RESET_PASSWORD_TITLE_PREFIX="Please reset your password";
+        public static final long TIME_OUT=12000l;
+        public static final String API_KEY="f00f0809c12c7c7bb4041dfec5efa22412c4f078061382f110c7a4e757fcba59";
+
     }
 
 
