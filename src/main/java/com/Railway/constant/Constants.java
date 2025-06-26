@@ -3,7 +3,6 @@ package com.Railway.constant;
 import com.Railway.untilities.Config;
 
 import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
 
 public class Constants {
     public static final String BASE_URL = "http://saferailway.somee.com/";
@@ -29,8 +28,14 @@ public class Constants {
         public static final String REGISTER_PID_LENGTH_ERROR_MESSAGE = "Invalid ID length.";
         public static final String HOME_WELCOME_MESSAGE = "Welcome " + Constants.AccountInfo.USERNAME;
 
-        public static final String CHANGE_PASSWORD_FORM_ERROR_MESSAGE = "The password reset token is incorrect or may be expired. Visit the forgot password page to generate a new one.";
-        public static final String CHANGE_PASSWORD_FORM_TOKEN_ERROR_MESSAGE = "The password reset token is invalid.";
+        public static final String CHANGE_PASSWORD_FORM_TOKEN_ERROR_MESSAGE = "The password reset token is incorrect or may be expired. Visit the forgot password page to generate a new one.";
+        public static final String CHANGE_PASSWORD_FORM_TOKEN_FIELD_ERROR_MESSAGE = "The password reset token is invalid.";
+        public static final String CHANGE_PASSWORD_FORM_PASSWORD_ERROR_MESSAGE = "Could not reset password. Please correct the errors and try again.";
+        public static final String CHANGE_PASSWORD_FORM_CONFIRM_PASSWORD_FIELD_ERROR_MESSAGE = "The password confirmation did not match the new password.";
+
+        public static final String BOOK_TICKET_SUCCESS_MESSAGE = "Ticket booked successfully!";
+
+
     }
 
 
@@ -38,6 +43,8 @@ public class Constants {
         public static final String LOGIN_HEADING_TEXT = "Login page";
         public static final String MY_TICKET_HEADING_TEXT = "Manage ticket";
         public static final String CHANGE_PASSWORD_HEADING_TEXT = "Change password";
+        public static final String BOOK_TICKET_HEADING_TEXT = "Book ticket";
+        public static final String CHANGE_PASSWORD_FORM_HEADING="Password Change Form";
     }
 
 
@@ -49,8 +56,20 @@ public class Constants {
         public static final String MY_TICKET ="My ticket";
         public static final String CHANGE_PASSWORD ="Change password";
         public static final String LOGOUT ="Log out";
+        public static final String TIMETABLE ="Timetable";
     }
 
+    public static class TicketInfo{
+        public static final String DEPART_DATE="6/28/2025";
+        public static final String DEPART_FROM="Huế";
+        public static final String ARRIVE_AT="Quảng Ngãi";
+        public static final String SEAT_TYPE="Soft bed with air conditioner";
+        public static final int TICKET_AMOUNT=1;
+
+
+        public static final String DEPART_FROM_TIMETABLE="Huế";
+        public static final String ARRIVE_AT_TIMETABLE="Sài Gòn";
+    }
 
 
 

@@ -14,6 +14,10 @@
             <class name="register.TC10" />
             <class name="register.TC11" />
             <class name="login.TC12" />
+            <class name="login.TC13" />
+            <class name="book_ticket.TC14" />
+            <class name="train_timetable.TC15" />
+            <class name="my_ticket.TC16" />
 
 
         </classes>

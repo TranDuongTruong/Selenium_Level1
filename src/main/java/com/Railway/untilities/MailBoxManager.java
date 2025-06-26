@@ -19,10 +19,10 @@ public class MailBoxManager extends BasePage {
         getElement(editEmailTextBoxBy).clear();
         getElement(editEmailTextBoxBy).sendKeys(email);
         getElement(saveEditButtonBy).click();
-        Helpers.waitElement(emailLinkBy, 120);
+        Helpers.waitElementToBeClickable(emailLinkBy, 120);
 
         getElement(emailLinkBy).click();
-        Helpers.waitElement(resetPasswordLinkBy, 120);
+        Helpers.waitElementToBeClickable(resetPasswordLinkBy, 120);
 
         DriverManager.get_driver().get(getElement(resetPasswordLinkBy).getText());
     }

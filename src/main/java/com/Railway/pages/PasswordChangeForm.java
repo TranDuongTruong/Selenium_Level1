@@ -10,17 +10,31 @@ public class PasswordChangeForm extends BasePage{
     private final By resetPassButtonBy =By.xpath("//input[@type='submit']");
     private final By resetErrorMessageBy =By.xpath("//p[@class='message error']");
     private final By resetTokenFieldErrorMessageBy =By.xpath("//label[@for='resetToken' and @class='validation-error']");
+    private final By resetConfirmPasswordFieldErrorMessageBy =By.xpath("//label[@for='confirmPassword' and @class='validation-error']");
 
 
 
 
     public void resetPasswordWithEmptyToken(String newPassword,String confirmPassword){
-        Helpers.waitElement(newPasswordTextBoxBy,30);
-        getElement(newPasswordTextBoxBy).sendKeys(newPassword);
-        getElement(confirmNewPasswordTextBoxBy).sendKeys(confirmPassword);
+        fillInResetPasswordForm(newPassword,confirmPassword);
         getElement(resetTokenTextBoxBy).clear();
         getElement(resetPassButtonBy).click();
     }
+    public void resetPassword(String newPassword,String confirmPassword){
+        fillInResetPasswordForm(newPassword,confirmPassword);
+        getElement(resetPassButtonBy).click();
+
+    }
+
+    public void fillInResetPasswordForm(String newPassword,String confirmPassword){
+        Helpers.waitElementToBeClickable(newPasswordTextBoxBy,30);
+        getElement(newPasswordTextBoxBy).sendKeys(newPassword);
+        getElement(confirmNewPasswordTextBoxBy).sendKeys(confirmPassword);
+
+
+    }
+
+
 
     public Boolean isErrorMessageDisplayed(){
         return !getElements(resetErrorMessageBy).isEmpty();
@@ -34,6 +48,13 @@ public class PasswordChangeForm extends BasePage{
     }
     public String getTokenFieldErrorMessage(){
         return getElement(resetTokenFieldErrorMessageBy).getText();
+    }
+
+    public Boolean isConfirmPasswordFieldErrorMessageDisplayed(){
+        return !getElements(resetConfirmPasswordFieldErrorMessageBy).isEmpty();
+    }
+    public String getConfirmPasswordFieldErrorMessage(){
+        return getElement(resetConfirmPasswordFieldErrorMessageBy).getText();
     }
 
 
