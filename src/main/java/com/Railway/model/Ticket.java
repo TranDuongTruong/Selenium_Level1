@@ -61,6 +61,9 @@ public class Ticket {
         return ticketAmount;
     }
 
+    public  String getTicketInfo(){
+        return "Depart Date: "+this.getDepartDate() +"\t Depart station: "+this.getDepartFrom()+"\tArrive station: "+this.getArriveAt()+"\tSeat type: "+this.getSeatType()+"\tAmount: "+this.getTicketAmount();
+    }
 
 }
 

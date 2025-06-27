@@ -1,11 +1,14 @@
 package login;
 
+import com.Railway.log.LogUtils;
 import base.TestBase;
 import com.Railway.constant.Constants;
 import com.Railway.pages.BasePage;
 import com.Railway.pages.ChangePasswordPage;
 import com.Railway.pages.LoginPage;
 import com.Railway.pages.MyTicketPage;
+import com.Railway.report.ExtentTestManager;
+import com.aventstack.extentreports.Status;
 import io.qameta.allure.Epic;
 import io.qameta.allure.Feature;
 import io.qameta.allure.Severity;
@@ -22,12 +25,18 @@ public class TC06 extends TestBase {
 
 
 
-//        1. Navigate to QA Railway Website
-//        2. Click on "Login" tab
+//        Step 1:Navigate to QA Railway Website
+//        Step 2:Click on "Login" tab
+        ExtentTestManager.logMessage(Status.INFO,"Step 1:Navigate to QA Railway Website");
+        ExtentTestManager.logMessage(Status.INFO,"Step 2:Click on \"Login\" tab");
+
         BasePage.goToSpecificPage(Constants.TabName.LOGIN);
         LoginPage loginPage=new LoginPage();
-//        3. Login with valid account
-        loginPage.loginWithValidAccount(Constants.AccountInfo.USERNAME,Constants.AccountInfo.PASSWORD);
+
+//        Step 3:Login with valid account
+        ExtentTestManager.logMessage(Status.INFO,"Step 3:Login with valid account");
+
+        loginPage.loginSuccess();
 
 
         softAssert.assertTrue(BasePage.isMenuItemIsExist(Constants.TabName.MY_TICKET),"Check 'My ticket' item");
