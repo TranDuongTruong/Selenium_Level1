@@ -7,9 +7,14 @@ import org.testng.annotations.Test;
 import com.Railway.pages.BasePage;
 import com.Railway.pages.LoginPage;
 
+import io.qameta.allure.*;
+
+@Epic("Login Function")
+@Feature("InValid Login")
+@Severity(SeverityLevel.CRITICAL)
 public class TC08 extends TestBase {
 
-    @Test
+    @Test(description = "User can't login with an account hasn't been activated")
     public void userCanNotLoginWithAccountHasNotBeenActivated(){
 
 

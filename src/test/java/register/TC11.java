@@ -7,10 +7,14 @@ import org.testng.Assert;
 import org.testng.annotations.Test;
 import com.Railway.pages.BasePage;
 import com.Railway.pages.RegisterPage;
+import io.qameta.allure.*;
 
+@Epic("Register Account")
+@Feature("InValid Register")
+@Severity(SeverityLevel.CRITICAL)
 public class TC11 extends TestBase {
 
-    @Test
+    @Test(description = "User can't create account while password and PID fields are empty")
     public void userCanNotCreateAccountWhenPasswordAndPidFieldsAreEmpty(){
 
 

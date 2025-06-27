@@ -8,9 +8,14 @@ import com.Railway.pages.BasePage;
 import com.Railway.pages.ChangePasswordPage;
 import com.Railway.pages.LoginPage;
 
+import io.qameta.allure.*;
+
+@Epic("Change Password Function")
+@Feature("Valid Change Password")
+@Severity(SeverityLevel.CRITICAL)
 public class TC09 extends TestBase {
 
-    @Test
+    @Test(description = "User can change password")
     public void userCanChangePassword(){
 
 //        1. Navigate to QA Railway Website

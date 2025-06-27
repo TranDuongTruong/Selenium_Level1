@@ -8,9 +8,14 @@ import org.testng.annotations.Test;
 import com.Railway.pages.BasePage;
 import com.Railway.pages.RegisterPage;
 
+import io.qameta.allure.*;
+
+@Epic("Register Account")
+@Feature("Valid Register")
+@Severity(SeverityLevel.CRITICAL)
 public class TC07  extends TestBase {
 
-    @Test
+    @Test(description = "User can create new account")
     public void userCanCreateNewAccount(){
 
 

@@ -7,10 +7,14 @@ import com.Railway.pages.BookTicketPage;
 import com.Railway.pages.LoginPage;
 import com.Railway.pages.TrainTimetablePage;
 import org.testng.annotations.Test;
+import io.qameta.allure.*;
 
+@Epic("Book Ticket")
+@Feature("Book ticket from train timetable page")
+@Severity(SeverityLevel.CRITICAL)
 public class TC15 extends TestBase {
 
-    @Test
+    @Test(description = "User can open Book ticket page by clicking on Book ticket link in Train timetable page")
     public  void userCanOpenBookTicketPageFromTrainTimetablePage(){
 
 

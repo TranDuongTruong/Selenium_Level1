@@ -2,14 +2,21 @@ package login;
 
 import base.TestBase;
 import com.Railway.constant.Constants;
+import io.qameta.allure.Epic;
+import io.qameta.allure.Feature;
+import io.qameta.allure.Severity;
+import io.qameta.allure.SeverityLevel;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 import com.Railway.pages.BasePage;
 import com.Railway.pages.LoginPage;
 
+@Epic("Login Function")
+@Feature("InValid Login")
+@Severity(SeverityLevel.CRITICAL)
 public class TC05 extends TestBase {
 
-    @Test
+    @Test(description = "System shows message when user enters wrong password several times")
     public void systemShowsMessageWhenUserEntersWrongPasswordSeveralTimes(){
 
 //        1. Navigate to QA Railway Website

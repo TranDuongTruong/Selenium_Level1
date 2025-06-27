@@ -6,25 +6,29 @@ import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
 
 public class DriverManager {
-    private static WebDriver _driver;
+    private static ThreadLocal<WebDriver> _driver = new ThreadLocal<>();
 
     public static void createDriver(){
-        if(_driver==null){
+        if(_driver.get()==null){
             ChromeOptions options=new ChromeOptions();
             options.addArguments("--allow-running-insecure-content");
             options.addArguments("--disable-web-security");
-            _driver =new ChromeDriver(options);
-            _driver.manage().window().maximize();
+            WebDriver driver = new ChromeDriver(options);
+            driver.manage().window().maximize();
+
+            _driver.set(driver);
         }
     }
 
     public static void quitDriver(){
-        _driver.quit();
-        _driver=null;
+        if (_driver.get() != null) {
+            _driver.get().quit();
+            _driver.remove();
+        }
 
     }
     public static WebDriver get_driver()
     {
-        return _driver;
+        return _driver.get();
     }
 }

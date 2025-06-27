@@ -8,9 +8,14 @@ import org.testng.annotations.Test;
 import com.Railway.pages.BasePage;
 import com.Railway.pages.RegisterPage;
 
+import io.qameta.allure.*;
+
+@Epic("Register Account")
+@Feature("InValid Register")
+@Severity(SeverityLevel.CRITICAL)
 public class TC10 extends TestBase {
 
-    @Test
+    @Test(description = "User can't create account with Confirm password is not the same with Password")
     public void userCanNotCreateAccountWhenConfirmPasswordIsNotTheSameAsPassword(){
 
 

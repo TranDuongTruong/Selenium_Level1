@@ -2,6 +2,7 @@ package my_ticket;
 
 import base.TestBase;
 import com.Railway.constant.Constants;
+import com.Railway.data.TicketJsonReader;
 import com.Railway.model.Ticket;
 import com.Railway.pages.BasePage;
 import com.Railway.pages.BookTicketPage;
@@ -10,9 +11,15 @@ import com.Railway.pages.MyTicketPage;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
+
+import io.qameta.allure.*;
+
+@Epic("My Tịcket Function")
+@Feature("Cancel Ticket")
+@Severity(SeverityLevel.CRITICAL)
 public class TC16 extends TestBase {
 
-    @Test
+    @Test(description = "User can cancel a ticket")
     public  void userCanCancelTicket(){
 //        1. Navigate to QA Railway Website
 //        2. Login with a valid account
@@ -21,7 +28,7 @@ public class TC16 extends TestBase {
         loginPage.loginWithValidAccount(Constants.AccountInfo.USERNAME,Constants.AccountInfo.PASSWORD);
 //        3. Book a ticket
         BasePage.goToSpecificPage(Constants.TabName.BOOK_TICKET);
-        Ticket ticket=new Ticket(Constants.TicketInfo.DEPART_DATE,Constants.TicketInfo.DEPART_FROM,Constants.TicketInfo.ARRIVE_AT,Constants.TicketInfo.SEAT_TYPE,Constants.TicketInfo.TICKET_AMOUNT);
+        Ticket ticket= TicketJsonReader.getRandomTicket();
         BookTicketPage bookTicketPage =new BookTicketPage();
         bookTicketPage.bookTicket(ticket);
 //        4. Click on "My ticket" tab

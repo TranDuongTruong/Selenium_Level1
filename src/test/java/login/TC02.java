@@ -2,14 +2,18 @@ package login;
 
 import base.TestBase;
 import com.Railway.constant.Constants;
+import io.qameta.allure.*;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 import com.Railway.pages.BasePage;
 import com.Railway.pages.LoginPage;
 
+@Epic("Login Function")
+@Feature("InValid Login")
+@Severity(SeverityLevel.CRITICAL)
 public class TC02 extends TestBase {
 
-    @Test
+    @Test(description = "User can't login with blank Username textbox")
     public void userCanNotLoginWithBlankUsernameTextbox(){
 
 //        1. Navigate to QA Railway Website

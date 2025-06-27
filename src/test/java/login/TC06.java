@@ -6,11 +6,18 @@ import com.Railway.pages.BasePage;
 import com.Railway.pages.ChangePasswordPage;
 import com.Railway.pages.LoginPage;
 import com.Railway.pages.MyTicketPage;
+import io.qameta.allure.Epic;
+import io.qameta.allure.Feature;
+import io.qameta.allure.Severity;
+import io.qameta.allure.SeverityLevel;
 import org.testng.annotations.Test;
 
+@Epic("Login Function")
+@Feature("Valid Login")
+@Severity(SeverityLevel.CRITICAL)
 public class TC06 extends TestBase {
 
-    @Test
+    @Test(description = "Additional pages display once user logged in")
     public void additionalPagesDisplayOnceUserLoggedIn(){
 
 

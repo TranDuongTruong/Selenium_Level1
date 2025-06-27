@@ -8,9 +8,15 @@ import com.Railway.pages.BasePage;
 import com.Railway.pages.HomePage;
 import com.Railway.pages.LoginPage;
 
+import io.qameta.allure.*;
+
+@Epic("Login Function")
+@Feature("Valid Login")
+@Severity(SeverityLevel.CRITICAL)
 public class TC01 extends TestBase {
 
-    @Test
+
+    @Test(description = "User can log into Railway with valid username and password")
     public void userCanLogIntoRailwayWithValidUsernameAndPassword(){
 
 //        1. Navigate to QA Railway Website

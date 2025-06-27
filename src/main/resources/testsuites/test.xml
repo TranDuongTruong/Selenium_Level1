@@ -1,5 +1,8 @@
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
-<suite name="Test-Suite">
+<suite name="Test-Suite" parallel="classes" thread-count="4">
+    <listeners>
+        <listener class-name="base.TestListener"/>
+    </listeners>
     <test name="ToolsQA">
         <classes>
             <class name="login.TC01" />
@@ -18,7 +21,6 @@
             <class name="book_ticket.TC14" />
             <class name="train_timetable.TC15" />
             <class name="my_ticket.TC16" />
-
 
         </classes>
     </test>
