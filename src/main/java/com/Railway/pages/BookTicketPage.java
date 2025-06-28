@@ -1,5 +1,6 @@
 package com.Railway.pages;
 
+import com.Railway.log.LogUtils;
 import com.Railway.model.Ticket;
 import com.Railway.untilities.Helpers;
 import org.openqa.selenium.By;
@@ -28,11 +29,11 @@ public class BookTicketPage extends BasePage  {
 
 
     public void bookTicket(Ticket ticket){
+        LogUtils.info("Ticket info: "+ticket.getTicketInfo());
+
         selectItemInDropdown(departDateDropDownBy,ticket.getDepartDate());
         selectItemInDropdown(departFromDropDownBy,ticket.getDepartFrom());
-
         Helpers.waitDropdownValue(arriveAtDropDownBy,"",3);
-
         selectItemInDropdown(arriveAtDropDownBy,ticket.getArriveAt());
         selectItemInDropdown(seatTypeDropDownBy,ticket.getSeatType());
         selectItemInDropdown(ticketAmountDropDownBy,String.valueOf(ticket.getTicketAmount()));

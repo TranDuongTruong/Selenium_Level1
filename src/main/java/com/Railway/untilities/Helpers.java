@@ -10,7 +10,9 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
+import java.text.SimpleDateFormat;
 import java.time.Duration;
+import java.util.Date;
 
 public class Helpers {
     public static void waitElementToBeClickable(By elementBy, int duration){
@@ -47,6 +49,10 @@ public class Helpers {
         new Actions(DriverManager.get_driver())
                 .scrollByAmount(0, element.getRect().y)
                 .perform();
+    }
+    public static String getTimestamp(){
+        return   new SimpleDateFormat("yyyyMMdd_HHmmss").format(new Date());
+
     }
 
 }

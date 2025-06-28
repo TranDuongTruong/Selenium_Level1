@@ -1,5 +1,6 @@
 package com.Railway.pages;
 
+import com.Railway.log.LogUtils;
 import com.Railway.model.RegisterInfo;
 import com.Railway.untilities.Helpers;
 import org.openqa.selenium.By;
@@ -24,6 +25,7 @@ public class RegisterPage extends BasePage {
 
 
     public void registerAccount(RegisterInfo registerInfo){
+        LogUtils.info("Register info: "+registerInfo.getRegisterInfo());
         getElement(emailTextBoxBy).sendKeys(registerInfo.getEmail());
         getElement(passwordTextBoxBy).sendKeys(registerInfo.getPassword());
         getElement(confirmPasswordTextBoxBy).sendKeys(registerInfo.getConfirmPassword());

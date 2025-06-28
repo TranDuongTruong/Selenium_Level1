@@ -1,5 +1,6 @@
 package com.Railway.pages;
 
+import com.Railway.log.LogUtils;
 import com.Railway.untilities.Helpers;
 import org.openqa.selenium.By;
 
@@ -13,6 +14,8 @@ public class ChangePasswordPage extends BasePage {
 
 
     public void changePassword(String currentPass, String newPass,String confirmNewPass){
+        LogUtils.info("Current password: "+currentPass+"\t New password: "+newPass+"\tConfirm new password: "+confirmNewPass);
+
         getElement(currPasswordTextBoxBy).sendKeys(currentPass);
         getElement(newPasswordTextBoxBy).sendKeys(newPass);
         getElement(confirmNewPasswordTextBoxBy).sendKeys(confirmNewPass);

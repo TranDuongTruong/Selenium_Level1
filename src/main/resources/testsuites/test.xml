@@ -1,7 +1,8 @@
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
-<suite name="Test-Suite" parallel="classes" thread-count="4">
+<suite name="Test-Suite" parallel="classes" thread-count="6">
     <listeners>
-        <listener class-name="base.TestListener"/>
+        <listener class-name="listener.TestListener"/>
+
     </listeners>
     <test name="ToolsQA">
         <classes>

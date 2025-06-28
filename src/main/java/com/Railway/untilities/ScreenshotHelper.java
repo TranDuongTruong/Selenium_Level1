@@ -20,9 +20,8 @@ public class ScreenshotHelper {
         TakesScreenshot ts = (TakesScreenshot) DriverManager.get_driver();
         File source = ts.getScreenshotAs(OutputType.FILE);
 
-        String timestamp = new SimpleDateFormat("yyyyMMdd_HHmmss").format(new Date());
         String screenshotDir = "target/screenshots";
-        String screenshotPath = screenshotDir + "/" + testName + "_" + timestamp + ".png";
+        String screenshotPath = screenshotDir + "/" + testName + "_" +  Helpers.getTimestamp() + ".png";
 
         try {
             File dir = new File(screenshotDir);

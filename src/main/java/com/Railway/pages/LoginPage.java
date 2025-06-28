@@ -1,7 +1,10 @@
 package com.Railway.pages;
 
+import com.Railway.dataObject.Account;
 import com.Railway.driver.DriverManager;
+import com.Railway.log.LogUtils;
 import com.Railway.untilities.Helpers;
+import io.qameta.allure.Step;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 
@@ -23,16 +26,26 @@ public class LoginPage extends BasePage {
     }
 
 
-    public void loginWithValidAccount(String userName, String password){
-        getElement(usernameTextBoxBy).sendKeys(userName);
-        getElement(passwordTextBoxBy).sendKeys(password);
+    public void loginWithValidAccount(Account account) {
+        LogUtils.info("Email: "+account.getUsername()+" and Password: "+account.getPassword());
+        getElement(passwordTextBoxBy).clear();
+        getElement(usernameTextBoxBy).sendKeys(account.getUsername());
+        getElement(passwordTextBoxBy).clear();
+        getElement(passwordTextBoxBy).sendKeys(account.getPassword());
         Helpers.scrollDown();
         getElement(loginButtonBy).click();
     }
+    public void loginSuccess(){
+        loginWithValidAccount(Account.VALID_ACCOUNT);
+    }
 
-    public void loginMutipleTime(String userName, String password,int time){
+
+
+    public void loginMutipleTime(int time){
+        LogUtils.info("Email: "+Account.INVALID_PASSWORD_ACCOUNT.getUsername()+" and Password: "+Account.INVALID_PASSWORD_ACCOUNT.getPassword());
+
         for(int i=0;i<time;i++){
-            loginWithValidAccount(userName,password);
+            loginWithValidAccount(Account.INVALID_PASSWORD_ACCOUNT);
         }
     }
 

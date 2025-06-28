@@ -1,5 +1,6 @@
 package com.Railway.pages;
 
+import com.Railway.log.LogUtils;
 import org.openqa.selenium.By;
 import com.Railway.untilities.Helpers;
 
@@ -27,6 +28,7 @@ public class PasswordChangeForm extends BasePage{
     }
 
     public void fillInResetPasswordForm(String newPassword,String confirmPassword){
+        LogUtils.info("New password: "+newPassword+"\tConfirm password: "+newPassword);
         Helpers.waitElementToBeClickable(newPasswordTextBoxBy,30);
         getElement(newPasswordTextBoxBy).sendKeys(newPassword);
         getElement(confirmNewPasswordTextBoxBy).sendKeys(confirmPassword);

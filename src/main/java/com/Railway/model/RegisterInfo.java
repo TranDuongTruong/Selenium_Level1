@@ -52,4 +52,7 @@ public class RegisterInfo {
     public String getPidNumber() {
         return pidNumber;
     }
+    public String getRegisterInfo(){
+        return "Email: "+this.getEmail()+"\tPassword: "+this.getPassword()+"\tConfirm password: "+this.getConfirmPassword()+"\tPID number: "+this.getPidNumber();
+    }
 }

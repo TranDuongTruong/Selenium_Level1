@@ -1,11 +1,14 @@
 package train_timetable;
 
+import com.Railway.log.LogUtils;
 import base.TestBase;
 import com.Railway.constant.Constants;
 import com.Railway.pages.BasePage;
 import com.Railway.pages.BookTicketPage;
 import com.Railway.pages.LoginPage;
 import com.Railway.pages.TrainTimetablePage;
+import com.Railway.report.ExtentTestManager;
+import com.aventstack.extentreports.Status;
 import org.testng.annotations.Test;
 import io.qameta.allure.*;
 
@@ -16,17 +19,29 @@ public class TC15 extends TestBase {
 
     @Test(description = "User can open Book ticket page by clicking on Book ticket link in Train timetable page")
     public  void userCanOpenBookTicketPageFromTrainTimetablePage(){
+        LogUtils.info("TC15: User can open Book ticket page by clicking on Book ticket link in Train timetable page");
+
+//        Step 1:Navigate to QA Railway Website
+//        Step 2:Login with a valid account
+
+        ExtentTestManager.logMessage(Status.INFO,"Step 1:Navigate to QA Railway Website");
+        ExtentTestManager.logMessage(Status.INFO,"Step 2:Login with a valid account");
 
 
-//        1. Navigate to QA Railway Website
-//        2. Login with a valid account
         BasePage.goToSpecificPage(Constants.TabName.LOGIN);
         LoginPage loginPage=new LoginPage();
-        loginPage.loginWithValidAccount(Constants.AccountInfo.USERNAME,Constants.AccountInfo.PASSWORD);
+        loginPage.loginSuccess();
 
-//        3. Click on "Timetable" tab
+//        Step 3:Click on "Timetable" tab
+        ExtentTestManager.logMessage(Status.INFO,"Step 3:Click on \"Timetable\" tab");
+
+
         BasePage.goToSpecificPage(Constants.TabName.TIMETABLE);
-//        4. Click on "book ticket" link of the route from "Huế" to "Sài Gòn"
+
+//        Step 4:Click on "book ticket" link of the route from "Huế" to "Sài Gòn"
+        ExtentTestManager.logMessage(Status.INFO," Step 4:Click on \"book ticket\" link of the route from \"Huế\" to \"Sài Gòn\"");
+
+
         TrainTimetablePage trainTimetablePage=new TrainTimetablePage();
         trainTimetablePage.clickBookTicketButton(Constants.TicketInfo.DEPART_FROM_TIMETABLE,Constants.TicketInfo.ARRIVE_AT_TIMETABLE);
 

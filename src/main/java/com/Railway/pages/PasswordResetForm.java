@@ -1,5 +1,6 @@
 package com.Railway.pages;
 
+import com.Railway.log.LogUtils;
 import org.openqa.selenium.By;
 
 public class PasswordResetForm extends BasePage {
@@ -9,6 +10,8 @@ public class PasswordResetForm extends BasePage {
 
 
     public void resetPassword(String email){
+        LogUtils.info("Email: "+email);
+
         getElement(emailTextBoxBy).sendKeys(email);
         getElement(sendInstructionButtonBy).click();
     }

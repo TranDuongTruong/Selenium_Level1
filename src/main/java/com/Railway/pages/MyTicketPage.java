@@ -1,6 +1,7 @@
 package com.Railway.pages;
 
 import com.Railway.driver.DriverManager;
+import com.Railway.log.LogUtils;
 import com.Railway.model.Ticket;
 import org.openqa.selenium.Alert;
 import org.openqa.selenium.By;
@@ -28,6 +29,7 @@ public class MyTicketPage extends BasePage {
     }
 
     public void cancelTicket(Ticket ticket){
+        LogUtils.info("Ticker info: "+ticket.getTicketInfo());
         getElement(By.xpath(String.format(cancelTicketButtomXpath,ticket.getArriveAt(),ticket.getDepartFrom(),ticket.getArriveAt(),ticket.getSeatType(),ticket.getArriveAt(),ticket.getDepartDate()))).click();
     }
 
