@@ -1,12 +1,12 @@
 package com.Railway.untilities;
 
 import com.Railway.driver.DriverManager;
-import org.openqa.selenium.By;
-import org.openqa.selenium.JavascriptExecutor;
-import org.openqa.selenium.TimeoutException;
-import org.openqa.selenium.WebElement;
+import com.Railway.log.LogUtils;
+import org.openqa.selenium.*;
 import org.openqa.selenium.interactions.Actions;
+import org.openqa.selenium.remote.RemoteWebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.FluentWait;
 import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
@@ -19,16 +19,36 @@ public class Helpers {
         WebDriverWait wait = new WebDriverWait(DriverManager.get_driver(), Duration.ofSeconds(duration));
         wait.until(ExpectedConditions.elementToBeClickable(elementBy));
     }
-    public static void waitDropdownValue(By dropdownBy, String expectedText, int timeoutInSeconds) {
+
+    public static void waitDropdownValue(By dropdownBy, int timeoutInSeconds) {
+
+        fluentWait(dropdownBy);
+
+        String currentId=((RemoteWebElement) DriverManager.get_driver().findElement(dropdownBy)).getId();
+       // LogUtils.debug("currentId"+currentId);
         WebDriverWait wait = new WebDriverWait(DriverManager.get_driver(), Duration.ofSeconds(timeoutInSeconds));
+
         try {
             wait.until(driver -> {
-                Select select = new Select(driver.findElement(dropdownBy));
-                String selectedText = select.getFirstSelectedOption().getText();
-                return selectedText.equals(expectedText);
+                String newId=((RemoteWebElement) DriverManager.get_driver().findElement(dropdownBy)).getId();
+             /*   LogUtils.debug("newId"+newId);*/
+                return !newId.equals(currentId);
             });
         } catch (TimeoutException e) {
+            System.out.println("Drop down do not change");
         }
+    }
+    public static void fluentWait(By by) {
+        FluentWait<WebDriver> wait = new FluentWait<>(DriverManager.get_driver())
+                .withTimeout(Duration.ofSeconds(5000))          // tổng thời gian chờ
+                .pollingEvery(Duration.ofMillis(500))         // tần suất kiểm tra lại
+                .ignoring(NoSuchElementException.class)       // bỏ qua nếu chưa thấy phần tử
+                .ignoring(StaleElementReferenceException.class);
+
+        wait.until(d -> {
+            WebElement element = d.findElement(by);
+            return (element.isDisplayed()) ? element : null;
+        });
     }
 
 
@@ -44,11 +64,6 @@ public class Helpers {
     public  static  void scrollDown(){
         JavascriptExecutor js = (JavascriptExecutor) DriverManager.get_driver();
         js.executeScript("window.scrollTo(0, document.body.scrollHeight);");
-    }
-    public static void scrollToElement(WebElement element) {
-        new Actions(DriverManager.get_driver())
-                .scrollByAmount(0, element.getRect().y)
-                .perform();
     }
     public static String getTimestamp(){
         return   new SimpleDateFormat("yyyyMMdd_HHmmss").format(new Date());

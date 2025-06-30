@@ -1,5 +1,8 @@
 package com.Railway.data;
 
+import com.Railway.dataObject.ArriveStation;
+import com.Railway.dataObject.DepartStation;
+import com.Railway.dataObject.SeatType;
 import com.Railway.model.Ticket;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -26,7 +29,7 @@ public class TicketJsonReader {
                 String seatType = node.get("seatType").asText();
                 int amount = Integer.parseInt(node.get("amount").asText());
                 //System.out.println(amount+"\t"+departFrom);
-                Ticket ticket = new Ticket(departDate, departFrom, arriveAt, seatType, amount);
+                Ticket ticket = new Ticket(departDate, DepartStation.getStation(departFrom), ArriveStation.getStation(arriveAt), SeatType.getSeatType(seatType), amount);
                 tickets.add(ticket);
             }
         } catch (Exception e) {

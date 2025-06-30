@@ -12,11 +12,14 @@ import com.Railway.report.ExtentTestManager;
 import com.Railway.untilities.Helpers;
 import com.Railway.untilities.MailBoxManager;
 import com.aventstack.extentreports.Status;
+import data.TestData;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
 
 import io.qameta.allure.*;
+
+import java.util.Map;
 
 @Epic("Login Function")
 @Feature("Valid Login")
@@ -24,31 +27,32 @@ import io.qameta.allure.*;
 public class TC13 extends TestBase {
 
 
-    @Test(description = "Errors display if password and confirm password don't match when resetting password")
-    public void errorsDisplayWhenPasswordAndConfirmDoNotMatchOnReset(){
+    @Test(description = "Errors display if password and confirm password don't match when resetting password"
+            ,dataProvider = "jsonDataProvider", dataProviderClass = TestData.class)
+    public void errorsDisplayWhenPasswordAndConfirmDoNotMatchOnReset(Map<String, Object> data){
         LogUtils.info("TC13: Errors display if password and confirm password don't match when resetting password");
 
 //    Step 1:Navigate to QA Railway Login page
-        ExtentTestManager.logMessage(Status.INFO,"Step 1:Navigate to QA Railway Login page");
+        ExtentTestManager.logMessageWithStep(Status.INFO,"Step 1:Navigate to QA Railway Login page");
 
         BasePage.goToSpecificPage(Constants.TabName.LOGIN);
         LoginPage loginPage=new LoginPage();
 
 //        Step 2:Click on "Forgot Password page" link
-        ExtentTestManager.logMessage(Status.INFO,"Step 2:Click on \"Forgot Password page\" link");
+        ExtentTestManager.logMessageWithStep(Status.INFO,"Step 2:Click on \"Forgot Password page\" link");
 
         loginPage.goToForgotPasswordPage();
         PasswordResetForm passwordResetForm =new PasswordResetForm();
 
 //        Step 3:Enter the email address of the created account in Pre-condition
 //        Step 4:Click on "Send Instructions" button
-        ExtentTestManager.logMessage(Status.INFO,"Step 3:Enter the email address of the created account in Pre-condition");
-        ExtentTestManager.logMessage(Status.INFO,"Step 4:Click on \"Send Instructions\" button");
+        ExtentTestManager.logMessageWithStep(Status.INFO,"Step 3:Enter the email address of the created account in Pre-condition");
+        ExtentTestManager.logMessageWithStep(Status.INFO,"Step 4:Click on \"Send Instructions\" button");
 
         passwordResetForm.resetPassword(Constants.AccountInfo.RESET_PASSWORD_EMAIL);
 
 //        Step 5:Open mailbox and click on reset password link
-        ExtentTestManager.logMessage(Status.INFO,"Step 5:Open mailbox and click on reset password link");
+        ExtentTestManager.logMessageWithStep(Status.INFO,"Step 5:Open mailbox and click on reset password link");
 
         DriverManager.get_driver().get(Constants.MAILBOX_URL);
         MailBoxManager mailBoxPage=new MailBoxManager();
@@ -57,12 +61,12 @@ public class TC13 extends TestBase {
 //    Step 6:Enter different values for password fields
 //    Step 7:Click "Reset Password" button
 
-        ExtentTestManager.logMessage(Status.INFO,"Step 6:Enter different values for password fields");
-        ExtentTestManager.logMessage(Status.INFO,"Step 7:Click \"Reset Password\" button");
+        ExtentTestManager.logMessageWithStep(Status.INFO,"Step 6:Enter different values for password fields");
+        ExtentTestManager.logMessageWithStep(Status.INFO,"Step 7:Click \"Reset Password\" button");
 
         PasswordChangeForm passwordChangeForm=new PasswordChangeForm();
         Helpers.waitPage(3);
-        passwordChangeForm.resetPassword(Constants.AccountInfo.PASSWORD,Constants.AccountInfo.PASSWORD+" ");
+        passwordChangeForm.resetPassword(data.get(Constants.DataProviderKey.NEW_PASSWORD_KEY).toString(),data.get(Constants.DataProviderKey.CONFIRM_PASSWORD_KEY).toString());
 
         Assert.assertTrue(passwordChangeForm.isErrorMessageDisplayed(),"Check error message displays above the form.");
         Assert.assertEquals(passwordChangeForm.getErrorMessage(),Constants.Message.CHANGE_PASSWORD_FORM_PASSWORD_ERROR_MESSAGE);

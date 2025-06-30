@@ -1,5 +1,6 @@
 package com.Railway.pages;
 
+import com.Railway.element.Element;
 import org.openqa.selenium.By;
 
 public class HomePage extends  BasePage {
@@ -8,8 +9,7 @@ public class HomePage extends  BasePage {
 
 
     public  String getWelcomeText(){
-       // DriverManager.get_driver().manage().window().setSize(new Dimension(1280, 800));
-        return getElement(welcomeTextBy).getText();
+        return Element.getText(welcomeTextBy);
 
     }
 

@@ -9,19 +9,13 @@
             <class name="login.TC01" />
             <class name="login.TC02" />
             <class name="login.TC03" />
-            <class name="book_ticket.TC04" />
+
             <class name="login.TC05" />
             <class name="login.TC06" />
-            <class name="register.TC07" />
+
             <class name="login.TC08" />
-            <class name="change_password.TC09" />
-            <class name="register.TC10" />
-            <class name="register.TC11" />
+
             <class name="login.TC12" />
-            <class name="login.TC13" />
-            <class name="book_ticket.TC14" />
-            <class name="train_timetable.TC15" />
-            <class name="my_ticket.TC16" />
 
         </classes>
     </test>

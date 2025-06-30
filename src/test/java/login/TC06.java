@@ -9,32 +9,36 @@ import com.Railway.pages.LoginPage;
 import com.Railway.pages.MyTicketPage;
 import com.Railway.report.ExtentTestManager;
 import com.aventstack.extentreports.Status;
+import data.TestData;
 import io.qameta.allure.Epic;
 import io.qameta.allure.Feature;
 import io.qameta.allure.Severity;
 import io.qameta.allure.SeverityLevel;
 import org.testng.annotations.Test;
 
+import java.util.Map;
+
 @Epic("Login Function")
 @Feature("Valid Login")
 @Severity(SeverityLevel.CRITICAL)
 public class TC06 extends TestBase {
 
-    @Test(description = "Additional pages display once user logged in")
-    public void additionalPagesDisplayOnceUserLoggedIn(){
+    @Test(description = "Additional pages display once user logged in"
+            ,dataProvider = "jsonDataProvider", dataProviderClass = TestData.class)
+    public void additionalPagesDisplayOnceUserLoggedIn(Map<String, Object> data){
 
 
 
 //        Step 1:Navigate to QA Railway Website
 //        Step 2:Click on "Login" tab
-        ExtentTestManager.logMessage(Status.INFO,"Step 1:Navigate to QA Railway Website");
-        ExtentTestManager.logMessage(Status.INFO,"Step 2:Click on \"Login\" tab");
+        ExtentTestManager.logMessageWithStep(Status.INFO,"Step 1:Navigate to QA Railway Website");
+        ExtentTestManager.logMessageWithStep(Status.INFO,"Step 2:Click on \"Login\" tab");
 
         BasePage.goToSpecificPage(Constants.TabName.LOGIN);
         LoginPage loginPage=new LoginPage();
 
 //        Step 3:Login with valid account
-        ExtentTestManager.logMessage(Status.INFO,"Step 3:Login with valid account");
+        ExtentTestManager.logMessageWithStep(Status.INFO,"Step 3:Login with valid account");
 
         loginPage.loginSuccess();
 

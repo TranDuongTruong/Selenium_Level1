@@ -2,9 +2,10 @@ package com.Railway.pages;
 
 import com.Railway.dataObject.Account;
 import com.Railway.driver.DriverManager;
-import com.Railway.log.LogUtils;
-import com.Railway.untilities.Helpers;
-import io.qameta.allure.Step;
+import com.Railway.element.Element;
+import com.Railway.model.AccountModel;
+import com.Railway.report.ExtentTestManager;
+import com.aventstack.extentreports.Status;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 
@@ -25,15 +26,24 @@ public class LoginPage extends BasePage {
         return DriverManager.get_driver().findElements(errorMessageLabelBy);
     }
 
+    public void login(String username, String password){
+        //LogUtils.info("Email: "+username+" and Password: "+password);
+        ExtentTestManager.logChildMessage(Status.INFO,"Email: "+username+" and Password: "+password);
+        Element.sendKeys(usernameTextBoxBy,username);
+        Element.sendKeys(passwordTextBoxBy,password);
+        Element.scrollToElement(loginButtonBy);
+        Element.click(loginButtonBy);
+    }
+
+    public void loginWithValidAccount(AccountModel account) {
+        ExtentTestManager.logChildMessage(Status.INFO,"Login with valid account");
+        login(account.getUserName(),account.getPassword());
+    }
 
     public void loginWithValidAccount(Account account) {
-        LogUtils.info("Email: "+account.getUsername()+" and Password: "+account.getPassword());
-        getElement(passwordTextBoxBy).clear();
-        getElement(usernameTextBoxBy).sendKeys(account.getUsername());
-        getElement(passwordTextBoxBy).clear();
-        getElement(passwordTextBoxBy).sendKeys(account.getPassword());
-        Helpers.scrollDown();
-        getElement(loginButtonBy).click();
+        ExtentTestManager.logChildMessage(Status.INFO,"Login with valid account");
+        login(account.getUsername(),account.getPassword());
+
     }
     public void loginSuccess(){
         loginWithValidAccount(Account.VALID_ACCOUNT);
@@ -41,19 +51,19 @@ public class LoginPage extends BasePage {
 
 
 
-    public void loginMutipleTime(int time){
-        LogUtils.info("Email: "+Account.INVALID_PASSWORD_ACCOUNT.getUsername()+" and Password: "+Account.INVALID_PASSWORD_ACCOUNT.getPassword());
+    public void loginMultipleTime(AccountModel accountModel, int time){
+        ExtentTestManager.logMessageWithStep(Status.INFO,"Login Multiple time");
 
         for(int i=0;i<time;i++){
-            loginWithValidAccount(Account.INVALID_PASSWORD_ACCOUNT);
+            loginWithValidAccount(accountModel);
         }
     }
 
     public String getLoginErrorMessage(){
-        return getElement(errorMessageLabelBy).getText();
+        return Element.getText(errorMessageLabelBy);
     }
     public void goToForgotPasswordPage(){
-        getElement(forgotPasswordLinkBy).click();
+        Element.click(forgotPasswordLinkBy);
     }
 
 

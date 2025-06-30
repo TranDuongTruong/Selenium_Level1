@@ -15,6 +15,7 @@ public class Constants {
         public static final String NEW_EMAIL = "abcc1234578"+ LocalDateTime.now().format(Config.HH_mm_ss) + "@sharklasers.com";
         public static final String PID = "123456789";
         public static final String RESET_PASSWORD_EMAIL = "test123456@sharklasers.com";
+        public static final String EMAIL_PREFIX = "email"+LocalDateTime.now().format(Config.HH_mm_ss);
     }
 
     public static class Message {
@@ -78,6 +79,28 @@ public class Constants {
         public static final String RESET_PASSWORD_TITLE_PREFIX="Please reset your password";
         public static final long TIME_OUT=12000l;
         public static final String API_KEY="f00f0809c12c7c7bb4041dfec5efa22412c4f078061382f110c7a4e757fcba59";
+
+    }
+
+
+    public static class DataProviderKey{
+        public static final String USERNAME_KEY="username";
+        public static final String PASSWORD_KEY="password";
+        public static final String EMAIL_KEY="email";
+        public static final String CONFIRM_PASSWORD_KEY="confirmPassword";
+        public static final String REGISTER_PIP_KEY="pid";
+        public static final String NEW_PASSWORD_KEY="newPassword";
+        public static final String CURRENT_PASSWORD_KEY="currentPassword";
+
+        public static final String TICKET_DEPART_STATION_KEY="departFrom";
+        public static final String TICKET_ARRIVE_STATION_KEY="arriveAt";
+        public static final String TICKET_DEPART_DATE_KEY="departDate";
+        public static final String TICKET_SEAT_TYPE_KEY="seatType";
+        public static final String TICKET_AMOUNT_KEY="amount";
+
+
+        public static final String TIMETABLE_DEPART_FROM_KEY="departFrom";
+        public static final String TIMETABLE_ARRIVE_AT_KEY="arriveAt";
 
     }
 

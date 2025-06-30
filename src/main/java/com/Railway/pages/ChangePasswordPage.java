@@ -1,7 +1,10 @@
 package com.Railway.pages;
 
+import com.Railway.element.Element;
 import com.Railway.log.LogUtils;
+import com.Railway.report.ExtentTestManager;
 import com.Railway.untilities.Helpers;
+import com.aventstack.extentreports.Status;
 import org.openqa.selenium.By;
 
 public class ChangePasswordPage extends BasePage {
@@ -14,19 +17,19 @@ public class ChangePasswordPage extends BasePage {
 
 
     public void changePassword(String currentPass, String newPass,String confirmNewPass){
-        LogUtils.info("Current password: "+currentPass+"\t New password: "+newPass+"\tConfirm new password: "+confirmNewPass);
+        ExtentTestManager.logChildMessage(Status.INFO,"Current password: "+currentPass+"\t New password: "+newPass+"\tConfirm new password: "+confirmNewPass);
 
-        getElement(currPasswordTextBoxBy).sendKeys(currentPass);
-        getElement(newPasswordTextBoxBy).sendKeys(newPass);
-        getElement(confirmNewPasswordTextBoxBy).sendKeys(confirmNewPass);
-        Helpers.scrollDown();
-        getElement(changePassButtonBy).click();
+        Element.sendKeys(currPasswordTextBoxBy,currentPass);
+        Element.sendKeys(newPasswordTextBoxBy,newPass);
+        Element.sendKeys(confirmNewPasswordTextBoxBy,confirmNewPass);
+        Element.scrollToElement(changePassButtonBy);
+        Element.click(changePassButtonBy);
 
     }
 
     public String getChangePasswordSuccessMessage(){
 
-        return getElement(successMessageTextBy).getText();
+        return Element.getText(successMessageTextBy);
     }
 
 

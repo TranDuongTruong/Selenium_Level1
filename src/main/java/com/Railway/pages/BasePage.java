@@ -1,6 +1,7 @@
 package com.Railway.pages;
 
 import com.Railway.driver.DriverManager;
+import com.Railway.element.Element;
 import io.qameta.allure.Step;
 import org.openqa.selenium.Alert;
 import org.openqa.selenium.By;
@@ -33,17 +34,12 @@ public class BasePage {
         return getHeadingTextBy().getText().equals(headingText);
     }
     public String getHeadingForm(){
-        return getElement(headingFormTextBy).getText();
+        return Element.getElement(headingFormTextBy).getText();
     }
 
 
 
-    protected WebElement getElement(By by){
-        return DriverManager.get_driver().findElement(by);
-    }
-    protected List<WebElement> getElements(By by){
-        return DriverManager.get_driver().findElements(by);
-    }
+
     public void clickPopup() {
         Alert alert = DriverManager.get_driver().switchTo().alert();
         alert.accept();

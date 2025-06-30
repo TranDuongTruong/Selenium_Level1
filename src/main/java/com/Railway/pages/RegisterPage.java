@@ -1,8 +1,11 @@
 package com.Railway.pages;
 
+import com.Railway.element.Element;
 import com.Railway.log.LogUtils;
 import com.Railway.model.RegisterInfo;
+import com.Railway.report.ExtentTestManager;
 import com.Railway.untilities.Helpers;
+import com.aventstack.extentreports.Status;
 import org.openqa.selenium.By;
 
 public class RegisterPage extends BasePage {
@@ -25,28 +28,28 @@ public class RegisterPage extends BasePage {
 
 
     public void registerAccount(RegisterInfo registerInfo){
-        LogUtils.info("Register info: "+registerInfo.getRegisterInfo());
-        getElement(emailTextBoxBy).sendKeys(registerInfo.getEmail());
-        getElement(passwordTextBoxBy).sendKeys(registerInfo.getPassword());
-        getElement(confirmPasswordTextBoxBy).sendKeys(registerInfo.getConfirmPassword());
-        getElement(pidTextBoxBy).sendKeys(registerInfo.getPidNumber());
-        Helpers.scrollDown();
-        getElement(registerButtonBy).click();
+        ExtentTestManager.logChildMessage(Status.INFO,"Register info: "+registerInfo.getRegisterInfo());
+        Element.sendKeys(emailTextBoxBy,registerInfo.getEmail());
+        Element.sendKeys(passwordTextBoxBy,registerInfo.getPassword());
+        Element.sendKeys(confirmPasswordTextBoxBy,registerInfo.getConfirmPassword());
+        Element.sendKeys(pidTextBoxBy,registerInfo.getPidNumber());
+        Element.scrollToElement(registerButtonBy);
+        Element.click(registerButtonBy);
     }
 
 
     public String getSuccessMessage(){
-        return getElement(successMessageTxtBy).getText();
+        return Element.getText(successMessageTxtBy);
     }
     public String getErrorMessage(){
-        return getElement(errorMessageTxtBy).getText();
+        return Element.getText(errorMessageTxtBy);
     }
 
     public  String getPasswordFieldErrorMessage(){
-        return  getElement(passErrorMessageTxtBy).getText();
+        return  Element.getText(passErrorMessageTxtBy);
     }
     public String getPidFieldErrorMessage(){
-        return getElement(pidErrorMessageTxtBy).getText();
+        return Element.getText(pidErrorMessageTxtBy);
     }
 
 

@@ -1,6 +1,9 @@
 package com.Railway.pages;
 
+import com.Railway.element.Element;
 import com.Railway.log.LogUtils;
+import com.Railway.report.ExtentTestManager;
+import com.aventstack.extentreports.Status;
 import org.openqa.selenium.By;
 import com.Railway.untilities.Helpers;
 
@@ -18,20 +21,20 @@ public class PasswordChangeForm extends BasePage{
 
     public void resetPasswordWithEmptyToken(String newPassword,String confirmPassword){
         fillInResetPasswordForm(newPassword,confirmPassword);
-        getElement(resetTokenTextBoxBy).clear();
-        getElement(resetPassButtonBy).click();
+        Element.clear(resetTokenTextBoxBy);
+        Element.click(resetPassButtonBy);
     }
     public void resetPassword(String newPassword,String confirmPassword){
         fillInResetPasswordForm(newPassword,confirmPassword);
-        getElement(resetPassButtonBy).click();
+        Element.click(resetPassButtonBy);
 
     }
 
     public void fillInResetPasswordForm(String newPassword,String confirmPassword){
-        LogUtils.info("New password: "+newPassword+"\tConfirm password: "+newPassword);
+        ExtentTestManager.logChildMessage(Status.INFO,"New password: "+newPassword+"\tConfirm password: "+newPassword);
         Helpers.waitElementToBeClickable(newPasswordTextBoxBy,30);
-        getElement(newPasswordTextBoxBy).sendKeys(newPassword);
-        getElement(confirmNewPasswordTextBoxBy).sendKeys(confirmPassword);
+        Element.sendKeys(newPasswordTextBoxBy,newPassword);
+        Element.sendKeys(confirmNewPasswordTextBoxBy,confirmPassword);
 
 
     }
@@ -39,24 +42,24 @@ public class PasswordChangeForm extends BasePage{
 
 
     public Boolean isErrorMessageDisplayed(){
-        return !getElements(resetErrorMessageBy).isEmpty();
+        return !Element.getElements(resetErrorMessageBy).isEmpty();
     }
     public String getErrorMessage(){
-        return getElement(resetErrorMessageBy).getText();
+        return Element.getText(resetErrorMessageBy);
     }
 
     public Boolean isTokenFieldErrorMessageDisplayed(){
-        return !getElements(resetTokenFieldErrorMessageBy).isEmpty();
+        return !Element.getElements(resetTokenFieldErrorMessageBy).isEmpty();
     }
     public String getTokenFieldErrorMessage(){
-        return getElement(resetTokenFieldErrorMessageBy).getText();
+        return Element.getText(resetTokenFieldErrorMessageBy);
     }
 
     public Boolean isConfirmPasswordFieldErrorMessageDisplayed(){
-        return !getElements(resetConfirmPasswordFieldErrorMessageBy).isEmpty();
+        return !Element.getElements(resetConfirmPasswordFieldErrorMessageBy).isEmpty();
     }
     public String getConfirmPasswordFieldErrorMessage(){
-        return getElement(resetConfirmPasswordFieldErrorMessageBy).getText();
+        return Element.getText(resetConfirmPasswordFieldErrorMessageBy);
     }
 
 

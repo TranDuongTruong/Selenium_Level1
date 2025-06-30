@@ -10,6 +10,7 @@ import com.Railway.report.ExtentTestManager;
 import com.Railway.untilities.MailService;
 import com.aventstack.extentreports.Status;
 import com.mailslurp.models.InboxDto;
+import data.TestData;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 import com.Railway.untilities.Helpers;
@@ -17,6 +18,8 @@ import com.Railway.untilities.MailBoxManager;
 
 
 import io.qameta.allure.*;
+
+import java.util.Map;
 
 @Epic("Login Function")
 @Feature("Valid Login")
@@ -27,27 +30,27 @@ public class TC12 extends TestBase {
         LogUtils.info("TC12: Errors display when password reset token is blank (Using UI)");
 
 //        Step 1:Navigate to QA Railway Login page
-        ExtentTestManager.logMessage(Status.INFO,"Step 1:Navigate to QA Railway Website");
+        ExtentTestManager.logMessageWithStep(Status.INFO,"Step 1:Navigate to QA Railway Website");
 
         BasePage.goToSpecificPage(Constants.TabName.LOGIN);
         LoginPage loginPage=new LoginPage();
 
 //        Step 2:Click on "Forgot Password page" link
-        ExtentTestManager.logMessage(Status.INFO,"Step 2:Click on \"Forgot Password page\" link+");
+        ExtentTestManager.logMessageWithStep(Status.INFO,"Step 2:Click on \"Forgot Password page\" link+");
 
         loginPage.goToForgotPasswordPage();
 
         PasswordResetForm passwordResetForm =new PasswordResetForm();
 //        Step 3:Enter the email address of the created account in Pre-condition
 //        Step 4:Click on "Send Instructions" button
-        ExtentTestManager.logMessage(Status.INFO,"Step 3:Enter the email address of the created account in Pre-condition");
-        ExtentTestManager.logMessage(Status.INFO,"Step 4:Click on \"Send Instructions\" button");
+        ExtentTestManager.logMessageWithStep(Status.INFO,"Step 3:Enter the email address of the created account in Pre-condition");
+        ExtentTestManager.logMessageWithStep(Status.INFO,"Step 4:Click on \"Send Instructions\" button");
 
 
         passwordResetForm.resetPassword(Constants.AccountInfo.RESET_PASSWORD_EMAIL);
 
 //        Step 5:Open mailbox and click on reset password link
-        ExtentTestManager.logMessage(Status.INFO,"Step 5:Open mailbox and click on reset password link");
+        ExtentTestManager.logMessageWithStep(Status.INFO,"Step 5:Open mailbox and click on reset password link");
 
 
         DriverManager.get_driver().get(Constants.MAILBOX_URL);
@@ -57,8 +60,8 @@ public class TC12 extends TestBase {
 
 //        Step 6:Enter new passwords and remove the Password Reset Token
 //        Step 7:Click "Reset Password" button
-        ExtentTestManager.logMessage(Status.INFO,"Step 6:Enter new passwords and remove the Password Reset Token");
-        ExtentTestManager.logMessage(Status.INFO,"Step 7:Click \"Reset Password\" button");
+        ExtentTestManager.logMessageWithStep(Status.INFO,"Step 6:Enter new passwords and remove the Password Reset Token");
+        ExtentTestManager.logMessageWithStep(Status.INFO,"Step 7:Click \"Reset Password\" button");
 
 
         passwordChangeForm.resetPasswordWithEmptyToken(Constants.AccountInfo.PASSWORD,Constants.AccountInfo.PASSWORD);
@@ -73,12 +76,13 @@ public class TC12 extends TestBase {
 
 
 
-    @Test(description = "Errors display when password reset token is blank (using API)")
-    public void errorsDisplayWhenPasswordResetTokenIsBlankUsingAPI() throws Exception {
+    @Test(description = "Errors display when password reset token is blank (using API)"
+            ,dataProvider = "jsonDataProvider", dataProviderClass = TestData.class)
+    public void errorsDisplayWhenPasswordResetTokenIsBlankUsingAPI(Map<String, Object> data) throws Exception {
         LogUtils.info("TC12: Errors display when password reset token is blank (using API)");
 
 //      Pre-condition: Create and activate a new account
-        ExtentTestManager.logMessage(Status.INFO,"Pre-condition: Create and activate a new account");
+        ExtentTestManager.logMessageWithStep(Status.INFO,"Pre-condition: Create and activate a new account");
 
 
         BasePage.goToSpecificPage(Constants.TabName.REGISTER);
@@ -86,7 +90,8 @@ public class TC12 extends TestBase {
         InboxDto newEmail=mailService.createShortInbox();
 
         RegisterPage registerPage=new RegisterPage();
-        RegisterInfo registerInfo=new RegisterInfo(newEmail.getEmailAddress(),Constants.AccountInfo.PASSWORD,Constants.AccountInfo.PASSWORD,Constants.AccountInfo.PID);
+        RegisterInfo registerInfo=new RegisterInfo(newEmail.getEmailAddress(),(String) data.get(Constants.DataProviderKey.PASSWORD_KEY),
+                (String) data.get(Constants.DataProviderKey.CONFIRM_PASSWORD_KEY),(String) data.get(Constants.DataProviderKey.REGISTER_PIP_KEY));
         registerPage.registerAccount(registerInfo);
 
         String confirmEmail=mailService.getEmailContent(newEmail,Constants.MaiLService.TIME_OUT,Constants.MaiLService.ACTIVE_ACCOUNT_TITLE_PREFIX,Constants.MaiLService.SYSTEM_SENDER);
@@ -96,14 +101,14 @@ public class TC12 extends TestBase {
 
 
 //        Step 1:Navigate to QA Railway Login page
-        ExtentTestManager.logMessage(Status.INFO,"Step 1:Navigate to QA Railway Login page");
+        ExtentTestManager.logMessageWithStep(Status.INFO,"Step 1:Navigate to QA Railway Login page");
 
 
         BasePage.goToSpecificPage(Constants.TabName.LOGIN);
         LoginPage loginPage=new LoginPage();
 
 //        Step 2:Click on "Forgot Password page" link
-        ExtentTestManager.logMessage(Status.INFO,"Step 2:Click on \"Forgot Password page\" link");
+        ExtentTestManager.logMessageWithStep(Status.INFO,"Step 2:Click on \"Forgot Password page\" link");
 
 
         loginPage.goToForgotPasswordPage();
@@ -111,14 +116,14 @@ public class TC12 extends TestBase {
 
 //        Step 3:Enter the email address of the created account in Pre-condition
 //        Step 4:Click on "Send Instructions" button
-        ExtentTestManager.logMessage(Status.INFO,"Step 3:Enter the email address of the created account in Pre-condition");
-        ExtentTestManager.logMessage(Status.INFO,"Step 4:Click on \"Send Instructions\" button");
+        ExtentTestManager.logMessageWithStep(Status.INFO,"Step 3:Enter the email address of the created account in Pre-condition");
+        ExtentTestManager.logMessageWithStep(Status.INFO,"Step 4:Click on \"Send Instructions\" button");
 
 
         passwordResetForm.resetPassword(newEmail.getEmailAddress());
 //        Step 5:Open mailbox and click on reset password link
         LogUtils.info("Open mailbox and click on reset password link");
-        ExtentTestManager.logMessage(Status.INFO," Step 5:Open mailbox and click on reset password link");
+        ExtentTestManager.logMessageWithStep(Status.INFO," Step 5:Open mailbox and click on reset password link");
 
 
         String resetPasswordEmail=mailService.getEmailContent(newEmail,Constants.MaiLService.TIME_OUT,Constants.MaiLService.RESET_PASSWORD_TITLE_PREFIX,Constants.MaiLService.SYSTEM_SENDER);
@@ -129,13 +134,14 @@ public class TC12 extends TestBase {
 
 //        Step 6:Enter new passwords and remove the Password Reset Token
 //        Step 7:Click "Reset Password" button
-        ExtentTestManager.logMessage(Status.INFO,"Step 6:Enter new passwords and remove the Password Reset Token");
-        ExtentTestManager.logMessage(Status.INFO,"Step 7:Click \"Reset Password\" button");
+        ExtentTestManager.logMessageWithStep(Status.INFO,"Step 6:Enter new passwords and remove the Password Reset Token");
+        ExtentTestManager.logMessageWithStep(Status.INFO,"Step 7:Click \"Reset Password\" button");
 
 
         PasswordChangeForm passwordChangeForm=new PasswordChangeForm();
         Assert.assertTrue(passwordChangeForm.getHeadingForm().equals(Constants.PageHeading.CHANGE_PASSWORD_FORM_HEADING));
-        passwordChangeForm.resetPasswordWithEmptyToken(Constants.AccountInfo.PASSWORD,Constants.AccountInfo.PASSWORD);
+
+        passwordChangeForm.resetPasswordWithEmptyToken( data.get(Constants.DataProviderKey.NEW_PASSWORD_KEY).toString(),data.get(Constants.DataProviderKey.CONFIRM_PASSWORD_KEY).toString());
 
 
         Assert.assertTrue(passwordChangeForm.isErrorMessageDisplayed(),"Check error message displays above the form.");
