@@ -21,8 +21,8 @@ public class TC04 extends TestBase {
 //        Step 1:Navigate to QA Railway Website
 //        Step 2:Click on "Book ticket" tab
 
-        ExtentTestManager.logMessage(Status.INFO,"Step 1:Navigate to QA Railway Website");
-        ExtentTestManager.logMessage(Status.INFO,"Step 2:Click on \"Book ticket\" tab");
+        ExtentTestManager.logMessageWithStep(Status.INFO,"Step 1:Navigate to QA Railway Website");
+        ExtentTestManager.logMessageWithStep(Status.INFO,"Step 2:Click on \"Book ticket\" tab");
 
 
         BasePage.goToSpecificPage(Constants.TabName.BOOK_TICKET);

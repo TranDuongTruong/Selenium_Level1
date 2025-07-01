@@ -23,8 +23,8 @@ public class TestListener implements ITestListener {
 
         LogUtils.error(getTestName(iTestResult) + " test is failed.");
         ExtentTestManager.addScreenShot(Status.FAIL, getTestName(iTestResult));
-        ExtentTestManager.logMessage(Status.FAIL, iTestResult.getThrowable().toString());
-        ExtentTestManager.logMessage(Status.FAIL, iTestResult.getName() + " is failed.");
+       ExtentTestManager.logMessageWithStep(Status.FAIL, iTestResult.getThrowable().toString());
+        ExtentTestManager.logMessageWithStep(Status.FAIL, iTestResult.getName() + " is failed.");
 
     }
 
@@ -62,20 +62,20 @@ public class TestListener implements ITestListener {
     @Override
     public void onTestSuccess(ITestResult iTestResult) {
         LogUtils.info(getTestName(iTestResult) + " test is passed.");
-        ExtentTestManager.logMessage(Status.PASS, getTestDescription(iTestResult));
+        ExtentTestManager.logMessageWithStep(Status.PASS, getTestDescription(iTestResult));
     }
 
 
     @Override
     public void onTestSkipped(ITestResult iTestResult) {
         LogUtils.warn(getTestName(iTestResult) + " test is skipped.");
-        ExtentTestManager.logMessage(Status.SKIP, getTestName(iTestResult) + " test is skipped.");
+        ExtentTestManager.logMessageWithStep(Status.SKIP, getTestName(iTestResult) + " test is skipped.");
     }
 
     @Override
     public void onTestFailedButWithinSuccessPercentage(ITestResult iTestResult) {
         LogUtils.error("Test failed but it is in defined success ratio " + getTestName(iTestResult));
-        ExtentTestManager.logMessage(Status.INFO,"Test failed but it is in defined success ratio " + getTestName(iTestResult));
+        ExtentTestManager.logMessageWithStep(Status.INFO,"Test failed but it is in defined success ratio " + getTestName(iTestResult));
     }
 
 

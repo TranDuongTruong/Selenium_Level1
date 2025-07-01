@@ -1,8 +1,11 @@
 package com.Railway.pages;
 
 import com.Railway.driver.DriverManager;
+import com.Railway.element.Element;
 import com.Railway.log.LogUtils;
 import com.Railway.model.Ticket;
+import com.Railway.report.ExtentTestManager;
+import com.aventstack.extentreports.Status;
 import org.openqa.selenium.Alert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
@@ -21,16 +24,18 @@ public class MyTicketPage extends BasePage {
 
 
     public int getSameCountTicket( Ticket ticket){
-        List<WebElement> tickets=getElements(By.xpath(String.format(ticketRowXpath,ticket.getArriveAt(),
-                ticket.getDepartFrom(),ticket.getArriveAt(),ticket.getSeatType(),ticket.getArriveAt(),ticket.getDepartDate())));
+        ExtentTestManager.logChildMessage(Status.INFO,"Get same ticket count");
+        List<WebElement> tickets= Element.getElements(By.xpath(String.format(ticketRowXpath,ticket.getArriveAt().getStation(),
+                ticket.getDepartFrom().getStation(),ticket.getArriveAt().getStation(),ticket.getSeatType().getSeatType(),
+                ticket.getArriveAt().getStation(),ticket.getDepartDate())));
 
         if(!tickets.isEmpty()) return tickets.size();
         return 0;
     }
 
     public void cancelTicket(Ticket ticket){
-        LogUtils.info("Ticker info: "+ticket.getTicketInfo());
-        getElement(By.xpath(String.format(cancelTicketButtomXpath,ticket.getArriveAt(),ticket.getDepartFrom(),ticket.getArriveAt(),ticket.getSeatType(),ticket.getArriveAt(),ticket.getDepartDate()))).click();
+        ExtentTestManager.logChildMessage(Status.INFO,"Cancel Ticket: "+ticket.getTicketInfo());
+        Element.click(By.xpath(String.format(cancelTicketButtomXpath,ticket.getArriveAt().getStation(),ticket.getDepartFrom().getStation(),ticket.getArriveAt().getStation(),ticket.getSeatType().getSeatType(),ticket.getArriveAt().getStation(),ticket.getDepartDate())));
     }
 
 

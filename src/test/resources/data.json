@@ -1,0 +1,85 @@
+{
+  "TC01": {
+    "username": "saveasd68@gmal.com",
+    "password": "12345678"
+  },
+  "TC02": {
+    "username": "",
+    "password": "12345678"
+  },
+  "TC03": {
+    "username": "saveasd68@gmail.com",
+    "password": ""
+  },
+  "TC04": {
+    "username": "",
+    "password": "12345678"
+  },
+  "TC05": {
+    "username": "saveasd68@sharklasers.com",
+    "password": ""
+  },
+  "TC08": {
+    "username": "abcc12345@sharklasers.com",
+    "password": "12345678"
+  },
+  "TC12": {
+    "password": "12345678",
+    "newPassword": "12345678",
+    "confirmPassword": "12345678",
+    "pid": "12345678"
+  },
+  "TC13": {
+    "email": "test123456@sharklasers.com",
+    "newPassword": "12345678",
+    "confirmPassword": "12345678999"
+
+  },
+  "TC07": {
+    "email": "test@sharklasers.com",
+    "newPassword": "12345678",
+    "confirmPassword": "12345678",
+    "pid": "12345678"
+  },
+  "TC10": {
+    "email": "test@sharklasers.com",
+    "newPassword": "12345678",
+    "confirmPassword": "12345678999",
+    "pid": "12345678"
+  },
+  "TC11": {
+    "email": "test@sharklasers.com",
+    "newPassword": "",
+    "confirmPassword": "",
+    "pid": ""
+  },
+  "TC15": {
+    "departFrom": "Huế",
+    "arriveAt": "Sài Gòn"
+
+  },
+  "TC16": {
+    "departFrom": "Sài Gòn",
+    "arriveAt": "Phan Thiết",
+    "departDate": "7/16/2025",
+    "seatType": "Soft bed with air conditioner",
+    "amount": 1
+  },
+  "TC09": {
+
+    "currentPassword": "12345678",
+    "newPassword": "12345678",
+    "confirmPassword": "12345678"
+  },
+
+  "TC14": [
+
+    {
+      "departFrom": "Huế",
+      "arriveAt": "Nha Trang",
+      "departDate": "7/12/2025",
+      "seatType": "Soft bed",
+      "amount": 1
+    }
+  ]
+}

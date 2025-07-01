@@ -1,6 +1,9 @@
 package com.Railway.pages;
 
+import com.Railway.element.Element;
 import com.Railway.log.LogUtils;
+import com.Railway.report.ExtentTestManager;
+import com.aventstack.extentreports.Status;
 import org.openqa.selenium.By;
 
 public class PasswordResetForm extends BasePage {
@@ -10,10 +13,10 @@ public class PasswordResetForm extends BasePage {
 
 
     public void resetPassword(String email){
-        LogUtils.info("Email: "+email);
+        ExtentTestManager.logChildMessage(Status.INFO,"Email: "+email);
 
-        getElement(emailTextBoxBy).sendKeys(email);
-        getElement(sendInstructionButtonBy).click();
+        Element.sendKeys(emailTextBoxBy,email);
+        Element.click(sendInstructionButtonBy);
     }
 
 

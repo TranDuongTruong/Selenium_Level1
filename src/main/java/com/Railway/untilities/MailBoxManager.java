@@ -1,6 +1,7 @@
 package com.Railway.untilities;
 
 import com.Railway.driver.DriverManager;
+import com.Railway.element.Element;
 import org.openqa.selenium.By;
 import com.Railway.pages.BasePage;
 
@@ -15,15 +16,14 @@ public class MailBoxManager extends BasePage {
 
 
     public  void goToResetPasswordLink(String email){
-        getElement(editEmailButtonBy).click();
-        getElement(editEmailTextBoxBy).clear();
-        getElement(editEmailTextBoxBy).sendKeys(email);
-        getElement(saveEditButtonBy).click();
+        Element.click(editEmailButtonBy);
+        Element.sendKeys(editEmailTextBoxBy,email);
+        Element.click(saveEditButtonBy);
         Helpers.waitElementToBeClickable(emailLinkBy, 120);
 
-        getElement(emailLinkBy).click();
+        Element.click(emailLinkBy);
         Helpers.waitElementToBeClickable(resetPasswordLinkBy, 120);
 
-        DriverManager.get_driver().get(getElement(resetPasswordLinkBy).getText());
+        DriverManager.get_driver().get(Element.getText(resetPasswordLinkBy));
     }
 }

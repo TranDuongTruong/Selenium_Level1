@@ -6,37 +6,45 @@ import com.Railway.constant.Constants;
 import com.Railway.model.RegisterInfo;
 import com.Railway.report.ExtentTestManager;
 import com.aventstack.extentreports.Status;
+import data.TestData;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 import com.Railway.pages.BasePage;
 import com.Railway.pages.RegisterPage;
 import io.qameta.allure.*;
 
+import java.util.Map;
+
 @Epic("Register Account")
 @Feature("InValid Register")
 @Severity(SeverityLevel.CRITICAL)
 public class TC11 extends TestBase {
 
-    @Test(description = "User can't create account while password and PID fields are empty")
-    public void userCanNotCreateAccountWhenPasswordAndPidFieldsAreEmpty(){
+    @Test(description = "User can't create account while password and PID fields are empty"
+            ,dataProvider = "jsonDataProvider", dataProviderClass = TestData.class)
+    public void userCanNotCreateAccountWhenPasswordAndPidFieldsAreEmpty(Map<String, Object> data){
         LogUtils.info("TC11: User can't create account while password and PID fields are empty");
 
 //        Step 1:Navigate to QA Railway Website
 //        Step 2:Click on "Register" tab
 
-        ExtentTestManager.logMessage(Status.INFO,"Step 1:Navigate to QA Railway Website");
-        ExtentTestManager.logMessage(Status.INFO,"Step 2:Click on \"Register\" tab");
+        ExtentTestManager.logMessageWithStep(Status.INFO,"Step 1:Navigate to QA Railway Website");
+        ExtentTestManager.logMessageWithStep(Status.INFO,"Step 2:Click on \"Register\" tab");
 
 
         BasePage.goToSpecificPage(Constants.TabName.REGISTER);
         RegisterPage registerPage=new RegisterPage();
-        RegisterInfo registerInfo=new RegisterInfo(Constants.AccountInfo.NEW_EMAIL,"","","");
+        RegisterInfo registerInfo=new RegisterInfo(
+                Constants.AccountInfo.EMAIL_PREFIX+data.get(Constants.DataProviderKey.EMAIL_KEY).toString(),
+                data.get(Constants.DataProviderKey.NEW_PASSWORD_KEY).toString(),
+                data.get(Constants.DataProviderKey.CONFIRM_PASSWORD_KEY).toString(),
+                data.get(Constants.DataProviderKey.REGISTER_PIP_KEY).toString());
 
 //        Step 3:Enter valid email address and leave other fields empty
 //        Step 4:Click on "Register" button
 
-        ExtentTestManager.logMessage(Status.INFO,"Step 3:Enter valid email address and leave other fields empty");
-        ExtentTestManager.logMessage(Status.INFO,"Step 4:Click on \"Register\" button");
+        ExtentTestManager.logMessageWithStep(Status.INFO,"Step 3:Enter valid email address and leave other fields empty");
+        ExtentTestManager.logMessageWithStep(Status.INFO,"Step 4:Click on \"Register\" button");
 
 
         registerPage.registerAccount(registerInfo);
