@@ -7,7 +7,7 @@ import com.Railway.constant.Constants;
 import com.Railway.model.AccountModel;
 import com.Railway.report.ExtentTestManager;
 import com.aventstack.extentreports.Status;
-import data.TestData;
+
 import org.testng.Assert;
 import org.testng.annotations.Test;
 import com.Railway.pages.BasePage;
@@ -23,9 +23,8 @@ import java.util.Map;
 public class TC08 extends TestBase {
 
     @Test(description = "User can't login with an account hasn't been activated"
-            ,dataProvider = "jsonDataProvider", dataProviderClass = TestData.class)
+            ,dataProvider = "jsonDataProvider", dataProviderClass = TestBase.class)
     public void userCanNotLoginWithAccountHasNotBeenActivated(Map<String, Object> data){
-        LogUtils.info("TC8: User can't login with an account hasn't been activated");
 
 
 //        Step 1:Navigate to QA Railway Website
@@ -39,6 +38,7 @@ public class TC08 extends TestBase {
 
 //        Step 3:Enter username and password of account hasn't been activated.
 //        Step 4:Click on "Login" button
+
         ExtentTestManager.logMessageWithStep(Status.INFO,"Step 3:Enter username and password of account hasn't been activated.");
         ExtentTestManager.logMessageWithStep(Status.INFO,"Step 4:Click on \"Login\" button");
 

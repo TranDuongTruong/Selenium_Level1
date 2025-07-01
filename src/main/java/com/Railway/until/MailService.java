@@ -1,15 +1,13 @@
-package com.Railway.untilities;
+package com.Railway.until;
 
 import com.Railway.constant.Constants;
 import com.mailslurp.apis.InboxControllerApi;
 import com.mailslurp.apis.WaitForControllerApi;
 import com.mailslurp.clients.ApiClient;
 import com.mailslurp.clients.Configuration;
-import com.mailslurp.models.CreateInboxDto;
 import com.mailslurp.models.Email;
 import com.mailslurp.models.InboxDto;
 
-import java.util.Random;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 

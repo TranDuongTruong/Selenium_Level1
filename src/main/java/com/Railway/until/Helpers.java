@@ -1,13 +1,10 @@
-package com.Railway.untilities;
+package com.Railway.until;
 
 import com.Railway.driver.DriverManager;
-import com.Railway.log.LogUtils;
 import org.openqa.selenium.*;
-import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.remote.RemoteWebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.FluentWait;
-import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.text.SimpleDateFormat;
@@ -25,7 +22,6 @@ public class Helpers {
         fluentWait(dropdownBy);
 
         String currentId=((RemoteWebElement) DriverManager.get_driver().findElement(dropdownBy)).getId();
-       // LogUtils.debug("currentId"+currentId);
         WebDriverWait wait = new WebDriverWait(DriverManager.get_driver(), Duration.ofSeconds(timeoutInSeconds));
 
         try {
@@ -40,15 +36,18 @@ public class Helpers {
     }
     public static void fluentWait(By by) {
         FluentWait<WebDriver> wait = new FluentWait<>(DriverManager.get_driver())
-                .withTimeout(Duration.ofSeconds(5000))          // tổng thời gian chờ
+                .withTimeout(Duration.ofSeconds(5))          // tổng thời gian chờ
                 .pollingEvery(Duration.ofMillis(500))         // tần suất kiểm tra lại
                 .ignoring(NoSuchElementException.class)       // bỏ qua nếu chưa thấy phần tử
                 .ignoring(StaleElementReferenceException.class);
-
-        wait.until(d -> {
-            WebElement element = d.findElement(by);
-            return (element.isDisplayed()) ? element : null;
-        });
+        try {
+            wait.until(d -> {
+                WebElement element = d.findElement(by);
+                return (element.isDisplayed()) ? element : null;
+            });
+        } catch (TimeoutException e){
+            System.out.println("No such elements during 5s");
+        }
     }
 
 
@@ -57,6 +56,7 @@ public class Helpers {
         wait.until(webDriver -> ((JavascriptExecutor) webDriver)
                 .executeScript("return document.readyState").equals("complete"));
     }
+
     public static String[] splitString(String str, String delimiter) {
         if (str == null) return new String[]{};
         return str.split(delimiter);

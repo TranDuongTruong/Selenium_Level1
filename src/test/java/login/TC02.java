@@ -7,7 +7,7 @@ import com.Railway.constant.Constants;
 import com.Railway.model.AccountModel;
 import com.Railway.report.ExtentTestManager;
 import com.aventstack.extentreports.Status;
-import data.TestData;
+
 import io.qameta.allure.*;
 import org.testng.Assert;
 import org.testng.annotations.Test;
@@ -23,9 +23,9 @@ public class TC02 extends TestBase {
 
 
     @Test(description = "User can't login with blank Username textbox"
-            ,dataProvider = "jsonDataProvider", dataProviderClass = TestData.class)
+            ,dataProvider = "jsonDataProvider", dataProviderClass = TestBase.class)
     public void userCanNotLoginWithBlankUsernameTextbox(Map<String, Object> data){
-        LogUtils.info("TC2: User can't login with blank Username textbox");
+
 //        Step 1:Navigate to QA Railway Website
 //        Step 2:Click on "Login" tab
 
@@ -35,6 +35,7 @@ public class TC02 extends TestBase {
 
         BasePage.goToSpecificPage(Constants.TabName.LOGIN);
         LoginPage loginPage=new LoginPage();
+
 //        Step 3:User doesn't type any words into "Username" textbox but enter valid information into "Password" textbox
 //        Step 4:Click on "Login" button
 

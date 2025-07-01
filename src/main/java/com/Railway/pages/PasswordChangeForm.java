@@ -1,11 +1,10 @@
 package com.Railway.pages;
 
 import com.Railway.element.Element;
-import com.Railway.log.LogUtils;
 import com.Railway.report.ExtentTestManager;
 import com.aventstack.extentreports.Status;
 import org.openqa.selenium.By;
-import com.Railway.untilities.Helpers;
+import com.Railway.until.Helpers;
 
 public class PasswordChangeForm extends BasePage{
     private final By newPasswordTextBoxBy =By.xpath("//input[@id='newPassword']");

@@ -1,13 +1,11 @@
 package register;
 
-import com.Railway.log.LogUtils;
 import base.TestBase;
 import com.Railway.constant.Constants;
 import com.Railway.model.RegisterInfo;
 import com.Railway.report.ExtentTestManager;
-import com.Railway.untilities.Config;
 import com.aventstack.extentreports.Status;
-import data.TestData;
+
 import org.testng.Assert;
 import org.testng.annotations.Test;
 import com.Railway.pages.BasePage;
@@ -15,7 +13,6 @@ import com.Railway.pages.RegisterPage;
 
 import io.qameta.allure.*;
 
-import java.time.LocalDateTime;
 import java.util.Map;
 
 @Epic("Register Account")
@@ -24,10 +21,8 @@ import java.util.Map;
 public class TC07  extends TestBase {
 
     @Test(description = "User can create new account"
-            ,dataProvider = "jsonDataProvider", dataProviderClass = TestData.class)
+            ,dataProvider = "jsonDataProvider", dataProviderClass = TestBase.class)
     public void userCanCreateNewAccount(Map<String, Object> data){
-        LogUtils.info("TC7: User can create new account");
-
 
 //        Step 1:Navigate to QA Railway Website
 //        Step 2:Click on "Register" tab

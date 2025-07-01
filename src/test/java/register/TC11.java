@@ -6,7 +6,7 @@ import com.Railway.constant.Constants;
 import com.Railway.model.RegisterInfo;
 import com.Railway.report.ExtentTestManager;
 import com.aventstack.extentreports.Status;
-import data.TestData;
+
 import org.testng.Assert;
 import org.testng.annotations.Test;
 import com.Railway.pages.BasePage;
@@ -21,9 +21,8 @@ import java.util.Map;
 public class TC11 extends TestBase {
 
     @Test(description = "User can't create account while password and PID fields are empty"
-            ,dataProvider = "jsonDataProvider", dataProviderClass = TestData.class)
+            ,dataProvider = "jsonDataProvider", dataProviderClass = TestBase.class)
     public void userCanNotCreateAccountWhenPasswordAndPidFieldsAreEmpty(Map<String, Object> data){
-        LogUtils.info("TC11: User can't create account while password and PID fields are empty");
 
 //        Step 1:Navigate to QA Railway Website
 //        Step 2:Click on "Register" tab

@@ -1,12 +1,40 @@
 {
-  "TC01": {
-    "username": "saveasd68@gmal.com",
+  "TC01": [
+    {
+    "username": "saveasd68@gmail.com",
     "password": "12345678"
-  },
-  "TC02": {
+    },
+    {
+      "username": "saveasd68@gmail.com",
+      "password": "12345678"
+    },
+    {
+      "username": "saveasd68@gmail.com",
+      "password": "12345678"
+    },
+    {
+      "username": "saveasd68@gmail.com",
+      "password": "12345678"
+    }
+  ],
+  "TC02": [
+    {
     "username": "",
     "password": "12345678"
-  },
+    },
+    {
+      "username": "",
+      "password": "12345678"
+    },
+    {
+      "username": "",
+      "password": "12345678"
+    },
+    {
+      "username": "",
+      "password": "12345678"
+    }
+  ],
   "TC03": {
     "username": "saveasd68@gmail.com",
     "password": ""
@@ -28,6 +56,9 @@
     "newPassword": "12345678",
     "confirmPassword": "12345678",
     "pid": "12345678"
+  },
+  "TC06": {
+
   },
   "TC13": {
     "email": "test123456@sharklasers.com",
