@@ -100,45 +100,75 @@ src
 
 Follow these steps to run the test suite and view the results:
 
-1. **Clone the repository**:
+---
 
-    * Clone the repository to your local machine using Git:
+### 1. **Clone the repository**:
 
-      ```bash
-      git clone <repository-url>
+Clone the repository to your local machine using Git:
+
+```bash
+git clone <repository-url>
+```
+
+---
+
+### 2. **Open the project in IntelliJ IDEA**:
+
+Open IntelliJ IDEA, go to **File > Open**, and select the folder where you cloned the repository.
+
+---
+
+### 3. **Set up the necessary environment variables**:
+
+- Make sure that **Java JDK 11** and **Maven** are installed on your machine.
+- Set up any required environment variables or project configurations.
+
+#### 🔑 Configure `MAIL_SLURP` API Key:
+
+To test email functionality, you need a MailSlurp API key:
+
+1. Go to [https://app.mailslurp.com/](https://app.mailslurp.com/)
+2. Create an account (free plan is available)
+3. Copy your **API Key**
+4. In IntelliJ IDEA:
+    - Go to **Run > Edit Configurations**
+    - Select your test configuration
+    - In the **Environment Variables** section, click `+`
+    - Add:
       ```
-
-2. **Open the project in IntelliJ IDEA**:
-
-    * Open IntelliJ IDEA, go to **File > Open** and select the folder where you cloned the repository.
-
-3. **Set up the necessary environment variables**:
-
-    * Make sure that Java JDK 11 and Maven are installed on your machine.
-    * Set up any required environment variables for the project (e.g., paths to necessary tools or configuration files).
-
-4. **Execute the test suite**:
-
-    * In IntelliJ IDEA, locate the **`test.xml`** file under `src/main/resources/testSuites/test.xml`.
-    * Right-click on **`test.xml`** and select **Run** to execute the test suite using TestNG.
-    * Alternatively, you can use Maven to run the tests. Navigate to the project root directory and run the following command:
-
-      ```bash
-      mvn test
+      MAIL_SLURP=your_api_key_here
       ```
+    - Click OK to save
 
-5. **View the results**:
+> Your test framework will automatically read this environment variable using `System.getenv("MAIL_SLURP")`.
 
-    * After running the tests, view the results using **ExtentReports** and **Allure**:
+---
 
-        * **ExtentReports**: Check the `ExtentReports` folder for the generated HTML reports.
-        * **Allure Reports**: To view Allure reports, navigate to the project folder and run the following command:
+### 4. **Execute the test suite**:
 
-          ```bash
-          allure serve
-          ```
+- In IntelliJ IDEA, locate the **`test.xml`** file under `src/main/resources/testSuites/test.xml`.
+- Right-click on **`test.xml`** and select **Run** to execute the test suite using TestNG.
 
-      This will launch a local server where you can view the detailed Allure test report.
+Or run via Maven:
+
+```bash
+mvn test
+```
+
+---
+
+### 5. **View the results**:
+
+After running the tests, view the results using **ExtentReports** and **Allure**:
+
+- **ExtentReports**: Check the `ExtentReports` folder for the generated HTML report.
+- **Allure Reports**:
+
+  Run:
+
+  ```bash
+  allure serve
+  ```
 
 ---
 

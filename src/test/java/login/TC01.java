@@ -44,7 +44,7 @@ public class TC01 extends TestBase {
         loginPage.loginWithValidAccount(account);
         ExtentTestManager.logMessageWithStep(Status.INFO," Step 4:Click on \"Login\" button");
 
-        Assert.assertEquals(homePage.getWelcomeText(),Constants.Message.HOME_WELCOME_MESSAGE,"Check welcome text in home page");
+        Assert.assertEquals(homePage.getWelcomeText(),Constants.Message.HOME_WELCOME_MESSAGE+account.getUserName(),"Check welcome text in home page");
 
     }
 }

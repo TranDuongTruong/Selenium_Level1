@@ -1,12 +1,17 @@
 package com.Railway.constant;
 
 import com.Railway.until.Config;
+import com.Railway.until.Helpers;
 
 import java.time.LocalDateTime;
 
 public class Constants {
     public static final String BASE_URL = "http://saferailway.somee.com/";
     public static final String MAILBOX_URL = "https://www.guerrillamail.com/";
+    public static final String EMAIL_FILE_PATH = "src/test/java/data/mail_data.json";
+    public static final String MAIL_SLURP_URL = "https://api.mailslurp.com";
+    public static final String ACTICE_EMAIL_PREFIX = "Please confirm your account ";
+    public static final String RESET_PASSWORD_EMAIL_PREFIX = "Please reset your password ";
 
     public static class AccountInfo{
         public static final String USERNAME = "saveasd68@gmail.com";
@@ -15,19 +20,21 @@ public class Constants {
         public static final String NEW_EMAIL = "abcc1234578"+ LocalDateTime.now().format(Config.HH_mm_ss) + "@sharklasers.com";
         public static final String PID = "123456789";
         public static final String RESET_PASSWORD_EMAIL = "test123456@sharklasers.com";
-        public static final String EMAIL_PREFIX = "e"+LocalDateTime.now().format(Config.HH_mm_ss);
+        public static final String EMAIL_PREFIX = LocalDateTime.now().format(Config.HH_mm_ss);
+
+
     }
 
     public static class Message {
-        public static final String CHANGE_PASSWORD_SUCCESS_MESSAGE = "Your password has been updated";
+        public static final String CHANGE_PASSWORD_SUCCESS_MESSAGE = "Your password has been updated!";
         public static final String LOGIN_ERROR_MESSAGE = "There was a problem with your login and/or errors exist in your form.";
-        public static final String LOGIN_SEVERAL_TIME_ERROR_MESSAGE = "You have used 4 out of 5 login attempts. After all 5 have been used, you will be unable to login for 15 minutes.";
+        public static final String LOGIN_SEVERAL_TIME_ERROR_MESSAGE = "There was a problem with your login and/or errors exist in your form.";
         public static final String LOGIN_INVALID_USERNAME_PASSWORD_ERROR_MESSAGE = "Invalid username or password. Please try again.";
-        public static final String REGISTER_SUCCESS_MESSAGE = "Thank you for registering your account";
+        public static final String REGISTER_SUCCESS_MESSAGE = "An email with instructions on how to activate your account is on its way to you.\n" +"Please check your mailbox.";
         public static final String REGISTER_ERROR_MESSAGE = "There're errors in the form. Please correct the errors and try again.";
         public static final String REGISTER_PASSWORD_LENGTH_ERROR_MESSAGE = "Invalid password length.";
-        public static final String REGISTER_PID_LENGTH_ERROR_MESSAGE = "Invalid ID length.";
-        public static final String HOME_WELCOME_MESSAGE = "Welcome " + Constants.AccountInfo.USERNAME;
+        public static final String REGISTER_PID_LENGTH_ERROR_MESSAGE = "Invalid ID length";
+        public static final String HOME_WELCOME_MESSAGE = "Welcome " ;
 
         public static final String CHANGE_PASSWORD_FORM_TOKEN_ERROR_MESSAGE = "The password reset token is incorrect or may be expired. Visit the forgot password page to generate a new one.";
         public static final String CHANGE_PASSWORD_FORM_TOKEN_FIELD_ERROR_MESSAGE = "The password reset token is invalid.";
@@ -78,7 +85,6 @@ public class Constants {
         public static final String ACTIVE_ACCOUNT_TITLE_PREFIX="Please confirm your account";
         public static final String RESET_PASSWORD_TITLE_PREFIX="Please reset your password";
         public static final long TIME_OUT=12000l;
-        public static final String API_KEY="e78ac8c36e3f4f15b95a5e4d1d414ccf698037d241c8c39f39f8de95f33894a5";
 
     }
 

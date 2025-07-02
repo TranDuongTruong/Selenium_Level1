@@ -12,7 +12,6 @@ public class ExtentManager {
     public synchronized static ExtentReports getExtentReports() {//synchronized: dùng chung khi  nhiều thread gọi getExtentReports() cùng lúc khi run nhiều case cùng lúc
         if (extentReports == null) {
             extentReports = new ExtentReports();
-
             String reportPath = "./ExtentReports/ExtentReport_" + Helpers.getTimestamp() + ".html";
             reporter = new ExtentSparkReporter(reportPath);
             reporter.config().setReportName("Railway Report");
