@@ -7,7 +7,7 @@ import com.Railway.constant.Constants;
 import com.Railway.model.AccountModel;
 import com.Railway.report.ExtentTestManager;
 import com.aventstack.extentreports.Status;
-import data.TestData;
+
 import io.qameta.allure.Epic;
 import io.qameta.allure.Feature;
 import io.qameta.allure.Severity;
@@ -25,9 +25,10 @@ import java.util.Map;
 public class TC03 extends TestBase {
 
     @Test(description = "User cannot log into Railway with invalid password"
-            ,dataProvider = "jsonDataProvider", dataProviderClass = TestData.class)
+            ,dataProvider = "jsonDataProvider", dataProviderClass = TestBase.class)
     public void userCanNotLogIntoRailwayWithInvalidPassword(Map<String, Object> data){
-        LogUtils.info("TC3: User cannot log into Railway with invalid password");
+
+
 //        Step 1:Navigate to QA Railway Website
 //        Step 2:Click on "Login" tab
 
@@ -37,6 +38,7 @@ public class TC03 extends TestBase {
 
         BasePage.goToSpecificPage(Constants.TabName.LOGIN);
         LoginPage loginPage=new LoginPage();
+
 //        Step 3:Enter valid Email and invalid Password
 //        Step 4:Click on "Login" button
 

@@ -1,6 +1,6 @@
 package com.Railway.constant;
 
-import com.Railway.untilities.Config;
+import com.Railway.until.Config;
 
 import java.time.LocalDateTime;
 
@@ -15,7 +15,7 @@ public class Constants {
         public static final String NEW_EMAIL = "abcc1234578"+ LocalDateTime.now().format(Config.HH_mm_ss) + "@sharklasers.com";
         public static final String PID = "123456789";
         public static final String RESET_PASSWORD_EMAIL = "test123456@sharklasers.com";
-        public static final String EMAIL_PREFIX = "email"+LocalDateTime.now().format(Config.HH_mm_ss);
+        public static final String EMAIL_PREFIX = "e"+LocalDateTime.now().format(Config.HH_mm_ss);
     }
 
     public static class Message {
@@ -78,7 +78,7 @@ public class Constants {
         public static final String ACTIVE_ACCOUNT_TITLE_PREFIX="Please confirm your account";
         public static final String RESET_PASSWORD_TITLE_PREFIX="Please reset your password";
         public static final long TIME_OUT=12000l;
-        public static final String API_KEY="f00f0809c12c7c7bb4041dfec5efa22412c4f078061382f110c7a4e757fcba59";
+        public static final String API_KEY="e78ac8c36e3f4f15b95a5e4d1d414ccf698037d241c8c39f39f8de95f33894a5";
 
     }
 

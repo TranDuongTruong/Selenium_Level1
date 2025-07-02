@@ -4,7 +4,7 @@ import com.Railway.driver.DriverManager;
 import com.Railway.log.LogUtils;
 import com.Railway.report.ExtentManager;
 import com.Railway.report.ExtentTestManager;
-import com.Railway.untilities.ScreenshotHelper;
+import com.aventstack.extentreports.ExtentTest;
 import com.aventstack.extentreports.Status;
 import org.openqa.selenium.WebDriver;
 import org.testng.ITestContext;
@@ -16,16 +16,26 @@ public class TestListener implements ITestListener {
     @Override
     public void onTestFailure(ITestResult iTestResult) {
 
-        ScreenshotHelper.saveScreenshotToFile(getTestName(iTestResult));
+        //ScreenshotHelper.saveScreenshotToFile(getTestName(iTestResult));
         Throwable error = iTestResult.getThrowable();
+        ExtentTest test = ExtentTestManager.getTest();
+
         LogUtils.error("Test FAILED: "+getTestName(iTestResult));
         LogUtils.error(error.getMessage());
+        if(test!=null) {
+            LogUtils.error(getTestName(iTestResult) + " test is failed.");
+            ExtentTestManager.addScreenShot(Status.FAIL, getTestName(iTestResult));
+            ExtentTestManager.logMessageWithStep(Status.FAIL, iTestResult.getThrowable().toString());
+            ExtentTestManager.logMessageWithStep(Status.FAIL, iTestResult.getName() + " is failed.");
+        }
+        else {
 
-        LogUtils.error(getTestName(iTestResult) + " test is failed.");
-        ExtentTestManager.addScreenShot(Status.FAIL, getTestName(iTestResult));
-       ExtentTestManager.logMessageWithStep(Status.FAIL, iTestResult.getThrowable().toString());
-        ExtentTestManager.logMessageWithStep(Status.FAIL, iTestResult.getName() + " is failed.");
+            ExtentTestManager.saveToReport(iTestResult.getName(), iTestResult.getTestName());
+            ExtentTestManager.logMessageWithStep(Status.FAIL,iTestResult.getName());
+            ExtentTestManager.logMessageWithStep(Status.FAIL,"Test failed: " + getTestName(iTestResult));
+            ExtentTestManager.logMessageWithStep(Status.FAIL,("Error Message: " + error.getMessage()));
 
+        }
     }
 
     public String getTestName(ITestResult result) {

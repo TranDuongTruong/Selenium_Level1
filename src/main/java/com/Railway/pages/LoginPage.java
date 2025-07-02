@@ -22,12 +22,8 @@ public class LoginPage extends BasePage {
 
 
 
-    private List<WebElement> getErrorMessages(){
-        return DriverManager.get_driver().findElements(errorMessageLabelBy);
-    }
 
     public void login(String username, String password){
-        //LogUtils.info("Email: "+username+" and Password: "+password);
         ExtentTestManager.logChildMessage(Status.INFO,"Email: "+username+" and Password: "+password);
         Element.sendKeys(usernameTextBoxBy,username);
         Element.sendKeys(passwordTextBoxBy,password);

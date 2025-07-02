@@ -1,6 +1,5 @@
 package login;
 
-import com.Railway.log.LogUtils;
 import base.TestBase;
 import com.Railway.constant.Constants;
 import com.Railway.driver.DriverManager;
@@ -9,10 +8,10 @@ import com.Railway.pages.LoginPage;
 import com.Railway.pages.PasswordChangeForm;
 import com.Railway.pages.PasswordResetForm;
 import com.Railway.report.ExtentTestManager;
-import com.Railway.untilities.Helpers;
-import com.Railway.untilities.MailBoxManager;
+import com.Railway.until.Helpers;
+import com.Railway.until.MailBoxManager;
 import com.aventstack.extentreports.Status;
-import data.TestData;
+
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
@@ -28,9 +27,8 @@ public class TC13 extends TestBase {
 
 
     @Test(description = "Errors display if password and confirm password don't match when resetting password"
-            ,dataProvider = "jsonDataProvider", dataProviderClass = TestData.class)
+            ,dataProvider = "jsonDataProvider", dataProviderClass = TestBase.class)
     public void errorsDisplayWhenPasswordAndConfirmDoNotMatchOnReset(Map<String, Object> data){
-        LogUtils.info("TC13: Errors display if password and confirm password don't match when resetting password");
 
 //    Step 1:Navigate to QA Railway Login page
         ExtentTestManager.logMessageWithStep(Status.INFO,"Step 1:Navigate to QA Railway Login page");
@@ -49,14 +47,14 @@ public class TC13 extends TestBase {
         ExtentTestManager.logMessageWithStep(Status.INFO,"Step 3:Enter the email address of the created account in Pre-condition");
         ExtentTestManager.logMessageWithStep(Status.INFO,"Step 4:Click on \"Send Instructions\" button");
 
-        passwordResetForm.resetPassword(Constants.AccountInfo.RESET_PASSWORD_EMAIL);
+        passwordResetForm.resetPassword(data.get(Constants.DataProviderKey.EMAIL_KEY).toString());
 
 //        Step 5:Open mailbox and click on reset password link
         ExtentTestManager.logMessageWithStep(Status.INFO,"Step 5:Open mailbox and click on reset password link");
 
         DriverManager.get_driver().get(Constants.MAILBOX_URL);
         MailBoxManager mailBoxPage=new MailBoxManager();
-        mailBoxPage.goToResetPasswordLink(Helpers.splitString(Constants.AccountInfo.RESET_PASSWORD_EMAIL,"@")[0]);
+        mailBoxPage.goToResetPasswordLink(Helpers.splitString(data.get(Constants.DataProviderKey.EMAIL_KEY).toString(),"@")[0]);
 
 //    Step 6:Enter different values for password fields
 //    Step 7:Click "Reset Password" button
@@ -66,6 +64,7 @@ public class TC13 extends TestBase {
 
         PasswordChangeForm passwordChangeForm=new PasswordChangeForm();
         Helpers.waitPage(3);
+        Assert.assertEquals(passwordChangeForm.getHeadingForm(),Constants.PageHeading.CHANGE_PASSWORD_FORM_HEADING);
         passwordChangeForm.resetPassword(data.get(Constants.DataProviderKey.NEW_PASSWORD_KEY).toString(),data.get(Constants.DataProviderKey.CONFIRM_PASSWORD_KEY).toString());
 
         Assert.assertTrue(passwordChangeForm.isErrorMessageDisplayed(),"Check error message displays above the form.");

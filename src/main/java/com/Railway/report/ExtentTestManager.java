@@ -27,21 +27,22 @@ public class ExtentTestManager {
 
 
     public static void logMessageWithStep(Status status, String stepTitle) {
-        logToLog4j(status, stepTitle);
+
+
+        logToLog4j(status, stepTitle); // Log to Log4j
         ExtentTest child = getTest().createNode(stepTitle);
-        child.log(status, stepTitle); // log ngay vào node
-        childTestMap.put((int) Thread.currentThread().getId(), child);
+        child.log(status, stepTitle);
+            childTestMap.put((int) Thread.currentThread().getId(), child);
+
+
     }
 
 
     public static void logChildMessage(Status status, String message) {
         logToLog4j(status, message);
         ExtentTest child = childTestMap.get((int) Thread.currentThread().getId());
-        if (child != null) {
-            child.log(status, message);
-        } else {
-            getTest().log(Status.WARNING, "⛔ Missing child node: " + message);
-        }
+        child.log(status, message);
+
     }
 
 
@@ -74,7 +75,8 @@ public class ExtentTestManager {
         String base64Image = captureScreenshot();
 
         ExtentTest child = childTestMap.get((int) Thread.currentThread().getId());
-         child.log(status, message,
+
+        child.log(status, message,
                     MediaEntityBuilder.createScreenCaptureFromBase64String(base64Image).build());
 
     }

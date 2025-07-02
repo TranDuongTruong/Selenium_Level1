@@ -1,6 +1,7 @@
 package com.Railway.element;
 
 import com.Railway.driver.DriverManager;
+import com.Railway.until.Helpers;
 import org.openqa.selenium.*;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.Select;
@@ -16,27 +17,40 @@ public class Element {
         return DriverManager.get_driver().findElements(by);
     }
     public static void click(By by) {
-
+        Helpers.fluentWait(by);
+        Element.scrollToElement(by);
+        getElement(by).click();
+    }
+    public static void clickEmail(By by) {
+        Helpers.fluentWait(by);
         getElement(by).click();
     }
     public static void clear(By by) {
+        Helpers.fluentWait(by);
+
 
         getElement(by).clear();
     }
 
 
+
     public static void sendKeys(By by,String text) {
+        Helpers.fluentWait(by);
+
         WebElement element = getElement(by);
         element.clear();
         element.sendKeys(text);
     }
 
     public static String getText(By by) {
+        Helpers.fluentWait(by);
 
         return getElement(by).getText();
     }
 
     public static boolean isDisplayed(By by) {
+        Helpers.fluentWait(by);
+
         try {
             return getElement(by).isDisplayed();
         } catch (NoSuchElementException e) {
@@ -62,6 +76,8 @@ public class Element {
         }
     }
     public static void scrollToElement(By by) {
+        Helpers.fluentWait(by);
+
         new Actions(DriverManager.get_driver())
                 .scrollByAmount(0, getElement(by).getRect().y)
                 .perform();

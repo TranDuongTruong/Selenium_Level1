@@ -9,7 +9,7 @@ import com.Railway.pages.LoginPage;
 import com.Railway.pages.TrainTimetablePage;
 import com.Railway.report.ExtentTestManager;
 import com.aventstack.extentreports.Status;
-import data.TestData;
+
 import org.testng.annotations.Test;
 import io.qameta.allure.*;
 
@@ -21,9 +21,8 @@ import java.util.Map;
 public class TC15 extends TestBase {
 
     @Test(description = "User can open Book ticket page by clicking on Book ticket link in Train timetable page"
-            ,dataProvider = "jsonDataProvider", dataProviderClass = TestData.class)
+            ,dataProvider = "jsonDataProvider", dataProviderClass = TestBase.class)
     public  void userCanOpenBookTicketPageFromTrainTimetablePage(Map<String, Object> data){
-        LogUtils.info("TC15: User can open Book ticket page by clicking on Book ticket link in Train timetable page");
 
 //        Step 1:Navigate to QA Railway Website
 //        Step 2:Login with a valid account

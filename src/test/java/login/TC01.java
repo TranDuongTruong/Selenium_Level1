@@ -6,7 +6,7 @@ import base.TestBase;
 import com.Railway.constant.Constants;
 import com.Railway.report.ExtentTestManager;
 import com.aventstack.extentreports.Status;
-import data.TestData;
+
 import org.testng.Assert;
 import org.testng.annotations.Test;
 import com.Railway.pages.BasePage;
@@ -24,7 +24,7 @@ import java.util.Map;
 public class TC01 extends TestBase {
 
 
-    @Test(description = "User can log into Railway with valid username and password",dataProvider = "jsonDataProvider", dataProviderClass = TestData.class)
+    @Test(description = "User can log into Railway with valid username and password",dataProvider = "jsonDataProvider", dataProviderClass = TestBase.class)
 
     public void userCanLogIntoRailwayWithValidUsernameAndPassword(Map<String, Object> data){
         LogUtils.info("TC1: User can log into Railway with valid username and password");
@@ -39,7 +39,6 @@ public class TC01 extends TestBase {
 
 //        Step 3:Enter valid Email and Password
 //        Step 4:Click on "Login" button
-       // ExtentTestManager.logMessageWithStep(Status.INFO," Step 3:Enter valid Email and Password");
         ExtentTestManager.logMessageWithStep(Status.INFO," Step 3:Enter valid Email and Password");
         AccountModel account=new AccountModel((String) data.get(Constants.DataProviderKey.USERNAME_KEY),(String) data.get(Constants.DataProviderKey.PASSWORD_KEY));
         loginPage.loginWithValidAccount(account);

@@ -5,7 +5,7 @@ import base.TestBase;
 import com.Railway.constant.Constants;
 import com.Railway.report.ExtentTestManager;
 import com.aventstack.extentreports.Status;
-import data.TestData;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.testng.Assert;
@@ -26,7 +26,7 @@ public class TC09 extends TestBase {
     private static final Logger log = LoggerFactory.getLogger(TC09.class);
 
     @Test(description = "User can change password"
-            ,dataProvider = "jsonDataProvider", dataProviderClass = TestData.class)
+            ,dataProvider = "jsonDataProvider", dataProviderClass = TestBase.class)
     public void userCanChangePassword(Map<String, Object> data){
         LogUtils.info("TC9: User can change password");
 //        Step 1:Navigate to QA Railway Website

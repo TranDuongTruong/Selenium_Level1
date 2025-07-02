@@ -1,4 +1,4 @@
-package com.Railway.untilities;
+package com.Railway.until;
 
 import com.Railway.driver.DriverManager;
 import io.qameta.allure.Attachment;
@@ -8,8 +8,6 @@ import org.openqa.selenium.io.FileHandler;
 
 import java.io.File;
 import java.io.IOException;
-import java.text.SimpleDateFormat;
-import java.util.Date;
 
 public class ScreenshotHelper {
     @Attachment(value = "Screenshot on Failure", type = "image/png")

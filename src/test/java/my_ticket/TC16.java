@@ -14,7 +14,7 @@ import com.Railway.pages.LoginPage;
 import com.Railway.pages.MyTicketPage;
 import com.Railway.report.ExtentTestManager;
 import com.aventstack.extentreports.Status;
-import data.TestData;
+
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
@@ -29,10 +29,8 @@ import java.util.Map;
 public class TC16 extends TestBase {
 
     @Test(description = "User can cancel a ticket"
-            ,dataProvider = "jsonDataProvider", dataProviderClass = TestData.class)
+            ,dataProvider = "jsonDataProvider", dataProviderClass = TestBase.class)
     public  void userCanCancelTicket(Map<String, Object> data){
-
-        LogUtils.info("TC16: User can cancel a ticket");
 
 //        Step 1:Navigate to QA Railway Website
 //        Step 2:Login with a valid account

@@ -6,7 +6,7 @@ import com.Railway.constant.Constants;
 import com.Railway.model.AccountModel;
 import com.Railway.report.ExtentTestManager;
 import com.aventstack.extentreports.Status;
-import data.TestData;
+
 import io.qameta.allure.Epic;
 import io.qameta.allure.Feature;
 import io.qameta.allure.Severity;
@@ -24,9 +24,9 @@ import java.util.Map;
 public class TC05 extends TestBase {
 
     @Test(description = "System shows message when user enters wrong password several times"
-            ,dataProvider = "jsonDataProvider", dataProviderClass = TestData.class)
+            ,dataProvider = "jsonDataProvider", dataProviderClass = TestBase.class)
     public void systemShowsMessageWhenUserEntersWrongPasswordSeveralTimes(Map<String, Object> data){
-        LogUtils.info("TC5: System shows message when user enters wrong password several times");
+
 //        Step 1:Navigate to QA Railway Website
 //        Step 2:Click on "Login" tab
 
@@ -35,6 +35,7 @@ public class TC05 extends TestBase {
 
         BasePage.goToSpecificPage(Constants.TabName.LOGIN);
         LoginPage loginPage=new LoginPage();
+
 //        Step 3:Enter valid information into "Username" textbox except "Password" textbox.
 //        Step 4:Click on "Login" button
 //        Step 5:Repeat step 3 three more times.

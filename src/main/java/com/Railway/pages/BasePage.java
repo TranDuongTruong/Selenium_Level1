@@ -24,7 +24,6 @@ public class BasePage {
 
     private final By headingPageTextBy =By.xpath("//h1[@align='center']");
     private final By headingFormTextBy =By.xpath("//legend");
-    protected String expectedTitletxt;
 
     private WebElement getHeadingTextBy(){
         return DriverManager.get_driver().findElement(this.headingPageTextBy);

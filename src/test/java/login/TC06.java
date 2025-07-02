@@ -9,7 +9,7 @@ import com.Railway.pages.LoginPage;
 import com.Railway.pages.MyTicketPage;
 import com.Railway.report.ExtentTestManager;
 import com.aventstack.extentreports.Status;
-import data.TestData;
+
 import io.qameta.allure.Epic;
 import io.qameta.allure.Feature;
 import io.qameta.allure.Severity;
@@ -23,17 +23,16 @@ import java.util.Map;
 @Severity(SeverityLevel.CRITICAL)
 public class TC06 extends TestBase {
 
-    @Test(description = "Additional pages display once user logged in"
-            ,dataProvider = "jsonDataProvider", dataProviderClass = TestData.class)
-    public void additionalPagesDisplayOnceUserLoggedIn(Map<String, Object> data){
+    @Test(description = "Additional pages display once user logged in")
+    public void additionalPagesDisplayOnceUserLoggedIn(){
 
 
 
 //        Step 1:Navigate to QA Railway Website
 //        Step 2:Click on "Login" tab
+
         ExtentTestManager.logMessageWithStep(Status.INFO,"Step 1:Navigate to QA Railway Website");
         ExtentTestManager.logMessageWithStep(Status.INFO,"Step 2:Click on \"Login\" tab");
-
         BasePage.goToSpecificPage(Constants.TabName.LOGIN);
         LoginPage loginPage=new LoginPage();
 

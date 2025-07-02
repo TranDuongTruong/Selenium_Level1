@@ -7,14 +7,14 @@ import com.Railway.driver.DriverManager;
 import com.Railway.model.RegisterInfo;
 import com.Railway.pages.*;
 import com.Railway.report.ExtentTestManager;
-import com.Railway.untilities.MailService;
+import com.Railway.until.MailService;
 import com.aventstack.extentreports.Status;
 import com.mailslurp.models.InboxDto;
-import data.TestData;
+
 import org.testng.Assert;
 import org.testng.annotations.Test;
-import com.Railway.untilities.Helpers;
-import com.Railway.untilities.MailBoxManager;
+import com.Railway.until.Helpers;
+import com.Railway.until.MailBoxManager;
 
 
 import io.qameta.allure.*;
@@ -27,7 +27,7 @@ import java.util.Map;
 public class TC12 extends TestBase {
     @Test(description = "Errors display when password reset token is blank (Using UI)")
     public void errorsDisplayWhenPasswordResetTokenIsBlankUsingUI(){
-        LogUtils.info("TC12: Errors display when password reset token is blank (Using UI)");
+
 
 //        Step 1:Navigate to QA Railway Login page
         ExtentTestManager.logMessageWithStep(Status.INFO,"Step 1:Navigate to QA Railway Website");
@@ -37,10 +37,9 @@ public class TC12 extends TestBase {
 
 //        Step 2:Click on "Forgot Password page" link
         ExtentTestManager.logMessageWithStep(Status.INFO,"Step 2:Click on \"Forgot Password page\" link+");
-
         loginPage.goToForgotPasswordPage();
-
         PasswordResetForm passwordResetForm =new PasswordResetForm();
+
 //        Step 3:Enter the email address of the created account in Pre-condition
 //        Step 4:Click on "Send Instructions" button
         ExtentTestManager.logMessageWithStep(Status.INFO,"Step 3:Enter the email address of the created account in Pre-condition");
@@ -60,6 +59,7 @@ public class TC12 extends TestBase {
 
 //        Step 6:Enter new passwords and remove the Password Reset Token
 //        Step 7:Click "Reset Password" button
+
         ExtentTestManager.logMessageWithStep(Status.INFO,"Step 6:Enter new passwords and remove the Password Reset Token");
         ExtentTestManager.logMessageWithStep(Status.INFO,"Step 7:Click \"Reset Password\" button");
 
@@ -77,9 +77,8 @@ public class TC12 extends TestBase {
 
 
     @Test(description = "Errors display when password reset token is blank (using API)"
-            ,dataProvider = "jsonDataProvider", dataProviderClass = TestData.class)
+            ,dataProvider = "jsonDataProvider", dataProviderClass = TestBase.class)
     public void errorsDisplayWhenPasswordResetTokenIsBlankUsingAPI(Map<String, Object> data) throws Exception {
-        LogUtils.info("TC12: Errors display when password reset token is blank (using API)");
 
 //      Pre-condition: Create and activate a new account
         ExtentTestManager.logMessageWithStep(Status.INFO,"Pre-condition: Create and activate a new account");

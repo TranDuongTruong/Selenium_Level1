@@ -14,7 +14,7 @@ import com.Railway.pages.LoginPage;
 import com.Railway.pages.MyTicketPage;
 import com.Railway.report.ExtentTestManager;
 import com.aventstack.extentreports.Status;
-import data.TestData;
+
 import org.testng.Assert;
 import org.testng.annotations.Test;
 import io.qameta.allure.*;
@@ -28,9 +28,10 @@ public class TC14 extends TestBase {
 
 
     @Test(description = "User can book 1 ticket at a time"
-            ,dataProvider = "jsonDataProvider", dataProviderClass = TestData.class)
+            ,dataProvider = "jsonDataProvider", dataProviderClass = TestBase.class)
     public void  userCanBookOneTicketAtATime(Map<String, Object> data){
         LogUtils.info("TC14: User can book 1 ticket at a time");
+
 //        Step 1:Navigate to QA Railway Website
 //        Step 2:Login with a valid account
 
@@ -84,7 +85,6 @@ public class TC14 extends TestBase {
 
         Assert.assertEquals(bookTicketPage.getkBookTicketSuccessMessage(),Constants.Message.BOOK_TICKET_SUCCESS_MESSAGE);
 
-        LogUtils.info("Check------------------------");
         Ticket actualTicket=bookTicketPage.getBookedTicketInfo(ticket);
 
         Assert.assertEquals(actualTicket.getArriveAt().getStation(),ticket.getArriveAt().getStation());
@@ -99,6 +99,12 @@ public class TC14 extends TestBase {
 
         BasePage.goToSpecificPage(Constants.TabName.MY_TICKET);
         Assert.assertEquals(myTicketPage.getSameCountTicket(ticket),sameTicketCount+1);
+
+        //post-condition steps: clean data
+        int sameTicketCount2= myTicketPage.getSameCountTicket(ticket);
+        myTicketPage.cancelTicket(ticket);
+        myTicketPage.clickPopup();
+        Assert.assertEquals(myTicketPage.getSameCountTicket(ticket),sameTicketCount2-1);
 
     }
 
