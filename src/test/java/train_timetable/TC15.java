@@ -52,8 +52,8 @@ public class TC15 extends TestBase {
         BookTicketPage bookTicketPage =new BookTicketPage();
         softAssert.assertTrue(bookTicketPage.isPageDisplayed(Constants.PageHeading.BOOK_TICKET_HEADING_TEXT));
 
-        softAssert.assertEquals(bookTicketPage.getDepartFrom(),Constants.TicketInfo.DEPART_FROM_TIMETABLE);
-        softAssert.assertEquals(bookTicketPage.getArriveAt(),Constants.TicketInfo.ARRIVE_AT_TIMETABLE);
+        softAssert.assertEquals(bookTicketPage.getDepartFrom(),data.get(Constants.DataProviderKey.TIMETABLE_DEPART_FROM_KEY).toString());
+        softAssert.assertEquals(bookTicketPage.getArriveAt(),data.get(Constants.DataProviderKey.TIMETABLE_ARRIVE_AT_KEY).toString());
 
     }
 

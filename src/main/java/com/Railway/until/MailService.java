@@ -12,7 +12,7 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public class MailService {
-    private  String apiKey = Constants.MaiLService.API_KEY;
+    private  String apiKey =System.getenv("MAIL_SLURP");;
     private  ApiClient client;
     private InboxControllerApi inboxApi;
     private  WaitForControllerApi waitApi;
@@ -48,14 +48,7 @@ public class MailService {
         return null;
     }
 
-    public String extractLinkFromBody(String body) {
-        Pattern pattern = Pattern.compile("href=[\"'](http[s]?://[^\"']+(resetToken|confirmationCode)=[^\"']+)[\"']");
-        Matcher matcher = pattern.matcher(body);
-        if (matcher.find()) {
-            return matcher.group(1); // Chỉ lấy phần URL trong href
-        }
-        return null;
-    }
+
 
 
 
